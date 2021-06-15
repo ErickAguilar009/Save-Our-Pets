@@ -47,3 +47,4 @@ Usted es libre de: Compartir — copiar y redistribuir el material en cualquier 
 ### Enlaces de interes
 
 - **[Mockups y Presupuesto total del proyecto]** - **https://drive.google.com/drive/folders/1h8ZcCH7koSRTgCDFX4mHJyXNVpeXVDj1?usp=sharing**
+- **[Tablero de Trello]** - **https://trello.com/b/mKeFi3WR/save-our-pets-iso**
