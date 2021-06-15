@@ -11,6 +11,25 @@ Save Our Pets tiene como objetivo ayudar a los animales que necesitan ser rescat
 
 ### Guia de instalacion
 
+- **Instalamos Visual Studio**
+- **Instalamos SQL Server**
+- **Descargamos el proyecto del repositorio de Git**
+
+1- En la carpeta descargada nos dirigimos a la carpeta donde se encuentra la base de datos en SQL.
+
+2-Copiamos y pegamos el script a SQL Server Managment Studio
+
+3- Ejecutamos el script
+
+4- Abrimos la solucion en visual studio 2019 o la version que tengamos
+
+5- En el explorador de soluciones, buscamos el archivo Web.config, estando ahi modificamos el ConnectionStrings y de "name" le ponemos el nombre que le asignamos a nuestra base de datos y modificamos los parametros de la contraseña de nuestro usuario y nuestro servidor (PC, laptop, etc) en pocas palabras de nuestra instancia de SQL Server
+
+6- Ejecutamos el proyecto, visual Studio nos ejectura la solucion con IIS
+
+7- Listo, ya puede abrir el proyecto de Save Our Pets
+
+
 ### Licencias 📄
 
 Este proyecto esta bajo la licencia Atribución-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0). Que establece lo siguiente:
