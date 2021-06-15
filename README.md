@@ -8,6 +8,7 @@ Save Our Pets tiene como objetivo ayudar a los animales que necesitan ser rescat
 
 - **[Visual Studio 2019] IDE Desarrollo** - **https://visualstudio.microsoft.com/es/downloads/**
 - **[SQL Server] Servicio de Base de datos** - **https://www.microsoft.com/es-es/sql-server/sql-server-downloads**
+- **[SQL Server Managment Studio] Ambiente de desarrollo para la administracion de nuestra instacia de SQL Server** - **https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?redirectedfrom=MSDN&view=sql-server-ver15**
 
 ### Guia de instalacion
 
