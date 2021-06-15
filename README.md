@@ -10,6 +10,10 @@ Save Our Pets tiene como objetivo ayudar a los animales que necesitan ser rescat
 
 ### Licencias 📄
 
+Este proyecto esta bajo la licencia Atribución-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0). Que establece lo siguiente:
+
+Usted es libre de: Compartir — copiar y redistribuir el material en cualquier medio o formato. La licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia.
+
 ### Desarrolladores ✒️
 
 - **Wilfredo José Acosta Beltrán** - **Front End y manuales**
