@@ -1,0 +1,71 @@
+﻿
+@model Save_Our_Pets.Models.reporte_rescate
+
+@{
+    ViewBag.Title = "Editar";
+}
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Editar</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Reporte de Rescate</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_solicitud)
+                @Html.HiddenFor(model => model.id_mascota)
+                @Html.HiddenFor(model => model.email)
+                @Html.HiddenFor(model => model.telefono)
+                @Html.HiddenFor(model => model.direccion)
+                @Html.HiddenFor(model => model.descripcion)
+                @Html.HiddenFor(model => model.fecha_reporte)
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        <p>Nombre mascota: @Model.Mascota.nombre_mascota</p>
+                        <p>Especie: @Model.Mascota.Especie.nombre</p>
+                        <p>Reportado por: @Model.email / @Model.telefono</p>
+                        <p>En la dirección: @Model.direccion</p>
+                        <p>Con la descripción: @Model.descripcion</p>
+                        <p>En la fecha: @Model.fecha_reporte</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fecha_rescate, htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.fecha_rescate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fecha_rescate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.Label("Estado de la mascota")
+                    </div>
+                    <div class="col-md-9">
+                        @Html.DropDownList("estadoRescate", new List<SelectListItem>
+                                 {
+                                     new SelectListItem {  Value = "0", Text = "Sin Rescatar" },
+                                     new SelectListItem {  Value = "1", Text = "Rescatado " }
+                                 }, new { @class = "form-control", @id = "ddlDepartamento" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" value="Actualizar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,468 @@
+﻿@model Save_Our_Pets.Models.DatosAdopcion
+
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Perfil</h2>
+                <hr />
+                <p>Nombre: @System.Web.HttpContext.Current.Session["nombre_apellidoUsuario"]</p>
+                <p>Fecha de nacimiento: @(Model.infoUsuario.fecha_nacimiento.ToString("dd-MM-yyyy"))</p>
+                <p>Email: @(Model.infoUsuario.email)</p>
+                <p>Teléfono: @(Model.infoUsuario.telefono)</p>
+                <p>DUI: @(Model.infoUsuario.DUI)</p>
+
+                @if (Model.datosSolicitud.estado_solicitud == 0)
+                {
+                    ViewBag.Clase = "alert alert-warning";
+                    ViewBag.Estado = "esta en espera de aprobación";
+                }
+                else if (Model.datosSolicitud.estado_solicitud == 1)
+                {
+                    ViewBag.Clase = "alert alert-success";
+                    ViewBag.Estado = "ha sido aceptada.\n Puede acercarse a buscar a su lindo compañero. ";
+                }
+                else if (Model.datosSolicitud.estado_solicitud == 2)
+                {
+                    ViewBag.Clase = "alert alert-danger";
+                    ViewBag.Estado = "ha sido rechazada";
+                }
+
+                @if (!String.IsNullOrEmpty(Model.datosPersonalesUsuario.direccion))
+                {
+                    <div class="col-md-12 col-md-offset-0">
+                        <h4>Estado de solicitud de adopción</h4>
+                        <div class="@ViewBag.Clase" role="alert">Su solicitud de adoptar un @(Model.datosSolicitud.Especie.nombre) @ViewBag.Estado</div>
+
+
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-8">
+                @if (String.IsNullOrEmpty(Model.datosPersonalesUsuario.direccion))
+                {
+                    <div class="alert alert-danger" role="alert">Debe modificar su información para continuar con la petición de adopción</div>
+                }
+
+            <div class="row">
+                @using (Html.BeginForm("Index", "Perfil", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="section-padding"></div>
+                    <h3>Datos Personales:</h3>
+
+                    <div class="col-md-6">
+                        <label>Departamento:</label>
+
+                        @Html.DropDownListFor(model => model.datosPersonalesUsuario.departamento, new List<SelectListItem>
+                      {
+                          new SelectListItem {  Value = "Ahuachapán", Text = "Ahuachapán" },
+                          new SelectListItem {  Value = "Sonsonate", Text = "Sonsonate" },
+                          new SelectListItem {  Value = "Santa Ana", Text = "Santa Ana" },
+                          new SelectListItem {  Value = "Chalatenango", Text = "Chalatenango" },
+                          new SelectListItem {  Value = "La Libertad", Text = "La Libertad" },
+                          new SelectListItem {  Value = "San Salvador", Text = "San Salvador" },
+                          new SelectListItem {  Value = "Cuscatlán", Text = "Cuscatlán" },
+                          new SelectListItem {  Value = "Cabañas", Text = "Cabañas" },
+                          new SelectListItem {  Value = "La Paz", Text = "La Paz" },
+                          new SelectListItem {  Value = "San Vicente", Text = "San Vicente" },
+                          new SelectListItem {  Value = "Usulután", Text = "Usulután" },
+                          new SelectListItem {  Value = "San Miguel", Text = "San Miguel" },
+                          new SelectListItem {  Value = "Morazán", Text = "Morazán" },
+                          new SelectListItem {  Value = "La Unión", Text = "La Unión" }
+                      }, new { @class = "form-control", @id = "ddlDepartamento" })
+                        @Html.ValidationMessageFor(model => model.datosPersonalesUsuario.departamento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Municipio:</label>
+                        @Html.DropDownListFor(model => model.datosPersonalesUsuario.municipio, new List<SelectListItem>
+                       {
+                           new SelectListItem { Value = "",  Text = ""}
+                       }, new { @class = "form-control", @id = "ddlMunicipio" })
+                        @Html.ValidationMessageFor(model => model.datosPersonalesUsuario.municipio, "", new { @class = "text-danger" })
+                        <br />
+                    </div>
+
+
+                    <div class="col-md-12 col-xs-12">
+                        <label>Dirección:</label>
+                        @Html.EditorFor(model => model.datosPersonalesUsuario.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.datosPersonalesUsuario.direccion, "", new { @class = "text-danger" })
+                        <br />
+                    </div>
+                    <div class=" col-md-6 col-xs-12 col-md-offset-0">
+                        <label for="empleo">Empleo fijo:</label>
+                        SI @Html.RadioButtonFor(model => model.datosSolicitud.empleo_fijo, 1, new { @checked = true }), NO @Html.RadioButtonFor(model => model.datosSolicitud.empleo_fijo, 0)
+
+                    </div>
+
+                    <div class=" col-md-6 col-xs-12 col-md-offset-0">
+                        <label for="empleo">Acepto los terminos y condiciones:</label>
+                        SI @Html.RadioButtonFor(model => model.datosSolicitud.requisitos_condiciones, 1, new { @checked = true }), NO @Html.RadioButtonFor(model => model.datosSolicitud.requisitos_condiciones, 0)
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6">
+                            <input type="submit" value="Actualizar" class="btn btn-success" />
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+<br />
+<br />
+<script type="text/javascript">
+    var departamento = document.getElementById('ddlDepartamento');
+    var municipio = document.getElementById('ddlMunicipio');
+    var municipios = [];
+
+    //Agregando eventos
+    window.addEventListener('load', agregarMunicipios);
+    departamento.addEventListener('change', agregarMunicipios);
+
+    window.addEventListener('load', function () {
+        if (document.getElementById('hf_municipio').value.length > 0) {
+            for (var i = 0; i < municipio.options.length; i++) {
+                municipio.options[i].removeAttribute('selected');
+            }
+            for (var i = 0; i < municipio.options.length; i++) {
+                if (municipio.options[i].value == document.getElementById('hf_municipio').value) {
+                    municipio.options[i].setAttribute('selected', 'selected');
+                    municipio.value = document.getElementById('hf_municipio').value;
+                    //return;
+                }
+
+            }
+        }
+    });
+
+    function limpiarElemento(elemento) {
+        while (elemento.hasChildNodes())
+            elemento.removeChild(elemento.firstChild);
+    }
+
+    function crearOpcion(valor, texto) {
+        var opcion = document.createElement('option');
+        opcion.value = valor;
+        opcion.innerText = texto;
+        municipio.appendChild(opcion);
+    }
+
+
+    function agregarMunicipios() {
+        limpiarElemento(municipio);
+        //Iniciamos el arreglo vacío
+        municipios = [];
+        switch (departamento.value) {
+            case 'Ahuachapán':
+                municipios.push(new Array("Ahuachapán"));
+                municipios.push(new Array("Apaneca"));
+                municipios.push(new Array("Atiquizaya"));
+                municipios.push(new Array("Concepción de Ataco"));
+                municipios.push(new Array("El Refugio"));
+                municipios.push(new Array("Guaymango"));
+                municipios.push(new Array("Jujutla"));
+                municipios.push(new Array("San Francisco Menéndez"));
+                municipios.push(new Array("San Lorenzo"));
+                municipios.push(new Array("San Pedro Puxtla"));
+                municipios.push(new Array("Tacuba"));
+                municipios.push(new Array("Turín", "2118"));
+                break;
+            case 'Santa Ana':
+                municipios.push(new Array("Candelaria de la Frontera"));
+                municipios.push(new Array("Chalchuapa"));
+                municipios.push(new Array("Coatepeque"));
+                municipios.push(new Array("El Congo"));
+                municipios.push(new Array("El Porvenir"));
+                municipios.push(new Array("Masahuat"));
+                municipios.push(new Array("Metapán"));
+                municipios.push(new Array("San Antonio Pajonal"));
+                municipios.push(new Array("San Sebastián Salitrillo"));
+                municipios.push(new Array("Santa Ana"));
+                municipios.push(new Array("Santa Rosa Guachipilín"));
+                municipios.push(new Array("Santiago de la Frontera"));
+                municipios.push(new Array("Texistepeque"));
+                break;
+            case 'Sonsonate':
+                municipios.push(new Array("Acajutla"));
+                municipios.push(new Array("Armenia"));
+                municipios.push(new Array("Caluco"));
+                municipios.push(new Array("Cuisnahuat"));
+                municipios.push(new Array("Izalco"));
+                municipios.push(new Array("Juayúa"));
+                municipios.push(new Array("Nahuizalco"));
+                municipios.push(new Array("Salcoatitán"));
+                municipios.push(new Array("San Antonio del Monte"));
+                municipios.push(new Array("San Julián"));
+                municipios.push(new Array("Santa Catarina Masahuat"));
+                municipios.push(new Array("Santa Isabel Ishuatán"));
+                municipios.push(new Array("Santo Domingo Guzmán"));
+                municipios.push(new Array("Sonsonate"));
+                municipios.push(new Array("Sonzacate"));
+                break;
+            case 'Chalatenango':
+                municipios.push(new Array("Agua Caliente"));
+                municipios.push(new Array("Arcatao"));
+                municipios.push(new Array("Azacualpa"));
+                municipios.push(new Array("Chalatenango"));
+                municipios.push(new Array("Comalapa"));
+                municipios.push(new Array("Citalá"));
+                municipios.push(new Array("Concepción Quezaltepeque"));
+                municipios.push(new Array("Dulce Nombre de María"));
+                municipios.push(new Array("El Carrizal"));
+                municipios.push(new Array("El Paraíso"));
+                municipios.push(new Array("La Laguna"));
+                municipios.push(new Array("La Palma"));
+                municipios.push(new Array("La Reina"));
+                municipios.push(new Array("Las Vueltas"));
+                municipios.push(new Array("Nueva Concepción"));
+                municipios.push(new Array("Nueva Trinidad"));
+                municipios.push(new Array("Nombre de Jesús"));
+                municipios.push(new Array("Ojos de Agua"));
+                municipios.push(new Array("Potonico"));
+                municipios.push(new Array("San Antonio de la Cruz"));
+                municipios.push(new Array("San Antonio Los Ranchos"));
+                municipios.push(new Array("San Fernando"));
+                municipios.push(new Array("San Francisco Lempa"));
+                municipios.push(new Array("San Francisco Morazán"));
+                municipios.push(new Array("San Ignacio"));
+                municipios.push(new Array("San Isidro Labrador"));
+                municipios.push(new Array("San José Cancasque"));
+                municipios.push(new Array("San José Las Flores"));
+                municipios.push(new Array("San Luis del Carmen"));
+                municipios.push(new Array("San Miguel de Mercedes"));
+                municipios.push(new Array("San Rafael"));
+                municipios.push(new Array("Santa Rita"));
+                municipios.push(new Array("Tejutla"));
+                break;
+            case 'Cuscatlán':
+                municipios.push(new Array("Candelaria"));
+                municipios.push(new Array("Cojutepeque"));
+                municipios.push(new Array("El Carmen"));
+                municipios.push(new Array("El Rosario"));
+                municipios.push(new Array("Monte San Juan"));
+                municipios.push(new Array("Oratorio de Concepción"));
+                municipios.push(new Array("San Bartolomé Perulapía"));
+                municipios.push(new Array("San Cristóbal"));
+                municipios.push(new Array("San José Guayabal"));
+                municipios.push(new Array("San Pedro Perulapán"));
+                municipios.push(new Array("San Rafael Cedros"));
+                municipios.push(new Array("San Ramón"));
+                municipios.push(new Array("Santa Cruz Analquito"));
+                municipios.push(new Array("Santa Cruz Michapa"));
+                municipios.push(new Array("Suchitoto"));
+                municipios.push(new Array("Tenancingo"));
+                break;
+            case 'San Salvador':
+                municipios.push(new Array("Aguilares"));
+                municipios.push(new Array("Apopa"));
+                municipios.push(new Array("Ayutuxtepeque"));
+                municipios.push(new Array("Cuscatancingo"));
+                municipios.push(new Array("Ciudad Delgado"));
+                municipios.push(new Array("El Paisnal"));
+                municipios.push(new Array("Guazapa"));
+                municipios.push(new Array("Ilopango"));
+                municipios.push(new Array("Mejicanos"));
+                municipios.push(new Array("Nejapa"));
+                municipios.push(new Array("Panchimalco"));
+                municipios.push(new Array("Rosario de Mora"));
+                municipios.push(new Array("San Marcos"));
+                municipios.push(new Array("San Martín"));
+                municipios.push(new Array("San Salvador"));
+                municipios.push(new Array("Santiago Texacuangos"));
+                municipios.push(new Array("Santo Tomás"));
+                municipios.push(new Array("Soyapango"));
+                municipios.push(new Array("Tonacatepeque"));
+                break;
+            case 'La Libertad':
+                municipios.push(new Array("Antiguo Cuscatlán"));
+                municipios.push(new Array("Chiltiupán"));
+                municipios.push(new Array("Ciudad Arce"));
+                municipios.push(new Array("Colón"));
+                municipios.push(new Array("Comasagua"));
+                municipios.push(new Array("Huizúcar"));
+                municipios.push(new Array("Jayaque"));
+                municipios.push(new Array("Jicalapa"));
+                municipios.push(new Array("La Libertad"));
+                municipios.push(new Array("Nuevo Cuscatlán"));
+                municipios.push(new Array("Quezaltepeque"));
+                municipios.push(new Array("Sacacoyo"));
+                municipios.push(new Array("San José Villanueva"));
+                municipios.push(new Array("San Juan Opico"));
+                municipios.push(new Array("San Matías"));
+                municipios.push(new Array("San Pablo Tacachico"));
+                municipios.push(new Array("Santa Tecla"));
+                municipios.push(new Array("Talnique"));
+                municipios.push(new Array("Tamanique"));
+                municipios.push(new Array("Teotepeque"));
+                municipios.push(new Array("Tepecoyo"));
+                municipios.push(new Array("Zaragoza"));
+                break;
+            case 'San Vicente':
+                municipios.push(new Array("Apastepeque"));
+                municipios.push(new Array("Guadalupe"));
+                municipios.push(new Array("San Cayetano Istepeque"));
+                municipios.push(new Array("San Esteban Catarina"));
+                municipios.push(new Array("San Ildefonso"));
+                municipios.push(new Array("San Lorenzo"));
+                municipios.push(new Array("San Sebastián"));
+                municipios.push(new Array("San Vicente"));
+                municipios.push(new Array("Santa Clara"));
+                municipios.push(new Array("Santo Domingo"));
+                municipios.push(new Array("Tecoluca"));
+                municipios.push(new Array("Tepetitán"));
+                municipios.push(new Array("Verapaz"));
+                break;
+            case 'Cabañas':
+                municipios.push(new Array("Cinquera"));
+                municipios.push(new Array("Dolores"));
+                municipios.push(new Array("Guacotecti"));
+                municipios.push(new Array("Ilobasco"));
+                municipios.push(new Array("Jutiapa"));
+                municipios.push(new Array("San Isidro"));
+                municipios.push(new Array("Sensuntepeque"));
+                municipios.push(new Array("Tejutepeque"));
+                municipios.push(new Array("Victoria"));
+                break;
+            case 'La Paz':
+                municipios.push(new Array("Cuyultitán"));
+                municipios.push(new Array("El Rosario"));
+                municipios.push(new Array("Jerusalén"));
+                municipios.push(new Array("Mercedes La Ceiba"));
+                municipios.push(new Array("Olocuilta"));
+                municipios.push(new Array("Paraíso de Osorio"));
+                municipios.push(new Array("San Antonio Masahuat"));
+                municipios.push(new Array("San Emigdio"));
+                municipios.push(new Array("San Francisco Chinameca"));
+                municipios.push(new Array("San Juan Nonualco"));
+                municipios.push(new Array("San Juan Talpa"));
+                municipios.push(new Array("San Juan Tepezontes"));
+                municipios.push(new Array("San Luis Talpa"));
+                municipios.push(new Array("San Luis La Herradura"));
+                municipios.push(new Array("San Miguel Tepezontes"));
+                municipios.push(new Array("San Pedro Masahuat"));
+                municipios.push(new Array("San Pedro Nonualco"));
+                municipios.push(new Array("San Rafael Obrajuelo"));
+                municipios.push(new Array("Santa María Ostuma"));
+                municipios.push(new Array("Santiago Nonualco"));
+                municipios.push(new Array("Tapalhuaca"));
+                municipios.push(new Array("Zacatecoluca"));
+                break;
+            case 'Usulután':
+                municipios.push(new Array("Alegría"));
+                municipios.push(new Array("Berlín"));
+                municipios.push(new Array("California"));
+                municipios.push(new Array("Concepción Batres"));
+                municipios.push(new Array("El Triunfo"));
+                municipios.push(new Array("Ereguayquín"));
+                municipios.push(new Array("Estanzuelas"));
+                municipios.push(new Array("Jiquilisco"));
+                municipios.push(new Array("Jucuapa"));
+                municipios.push(new Array("Jucuarán"));
+                municipios.push(new Array("Mercedes Umaña"));
+                municipios.push(new Array("Nueva Granada"));
+                municipios.push(new Array("Ozatlán"));
+                municipios.push(new Array("Puerto El Triunfo"));
+                municipios.push(new Array("San Agustín"));
+                municipios.push(new Array("San Buenaventura"));
+                municipios.push(new Array("San Dionisio"));
+                municipios.push(new Array("San Francisco Javier"));
+                municipios.push(new Array("Santa Elena"));
+                municipios.push(new Array("Santa María"));
+                municipios.push(new Array("Santiago de María"));
+                municipios.push(new Array("Tecapán"));
+                municipios.push(new Array("Usulután"));
+                break;
+            case 'San Miguel':
+                municipios.push(new Array("Carolina"));
+                municipios.push(new Array("Chapeltique"));
+                municipios.push(new Array("Chinameca"));
+                municipios.push(new Array("Chirilagua"));
+                municipios.push(new Array("Ciudad Barrios"));
+                municipios.push(new Array("Comacarán"));
+                municipios.push(new Array("El Tránsito"));
+                municipios.push(new Array("Lolotique"));
+                municipios.push(new Array("Moncagua"));
+                municipios.push(new Array("Nueva Guadalupe"));
+                municipios.push(new Array("Nuevo Edén de San Juan"));
+                municipios.push(new Array("Quelepa"));
+                municipios.push(new Array("San Antonio del Mosco"));
+                municipios.push(new Array("San Gerardo"));
+                municipios.push(new Array("San Jorge"));
+                municipios.push(new Array("San Luis de la Reina"));
+                municipios.push(new Array("San Miguel"));
+                municipios.push(new Array("San Rafael Oriente"));
+                municipios.push(new Array("Sesori"));
+                municipios.push(new Array("Uluazapa"));
+                break;
+            case 'Morazán':
+                municipios.push(new Array("Arambala"));
+                municipios.push(new Array("Cacaopera"));
+                municipios.push(new Array("Chilanga"));
+                municipios.push(new Array("Corinto"));
+                municipios.push(new Array("Delicias de Concepción"));
+                municipios.push(new Array("El Divisadero"));
+                municipios.push(new Array("El Rosario"));
+                municipios.push(new Array("Gualococti"));
+                municipios.push(new Array("Guatajiagua"));
+                municipios.push(new Array("Joateca"));
+                municipios.push(new Array("Jocoaitique"));
+                municipios.push(new Array("Jocoro"));
+                municipios.push(new Array("Lolotiquillo"));
+                municipios.push(new Array("Meanguera"));
+                municipios.push(new Array("Osicala"));
+                municipios.push(new Array("Perquín"));
+                municipios.push(new Array("San Carlos"));
+                municipios.push(new Array("San Fernando"));
+                municipios.push(new Array("San Francisco Gotera"));
+                municipios.push(new Array("San Isidro"));
+                municipios.push(new Array("San Simón"));
+                municipios.push(new Array("Sensembra"));
+                municipios.push(new Array("Sociedad"));
+                municipios.push(new Array("Torola"));
+                municipios.push(new Array("Yamabal"));
+                municipios.push(new Array("Yoloaiquín"));
+                break;
+            case 'La Unión':
+                municipios.push(new Array("Anamorós"));
+                municipios.push(new Array("Bolívar"));
+                municipios.push(new Array("Concepción de Oriente"));
+                municipios.push(new Array("Conchagua"));
+                municipios.push(new Array("El Carmen"));
+                municipios.push(new Array("El Sauce"));
+                municipios.push(new Array("Intipucá"));
+                municipios.push(new Array("La Unión"));
+                municipios.push(new Array("Lislique"));
+                municipios.push(new Array("Meanguera del Golfo"));
+                municipios.push(new Array("Nueva Esparta"));
+                municipios.push(new Array("Pasaquina"));
+                municipios.push(new Array("Polorós"));
+                municipios.push(new Array("San Alejo"));
+                municipios.push(new Array("San José de la Fuente"));
+                municipios.push(new Array("Santa Rosa de Lima"));
+                municipios.push(new Array("Yayantique"));
+                municipios.push(new Array("Yucuaiquín"));
+                break;
+        }//fin de Switch
+
+        for (var i = 0; i < municipios.length; i++) {
+            crearOpcion(municipios[i][0], municipios[i][0]);
+        }
+
+    }
+
+
+</script>

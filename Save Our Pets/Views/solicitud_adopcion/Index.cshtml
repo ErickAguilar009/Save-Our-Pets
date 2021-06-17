@@ -1,0 +1,170 @@
+﻿@model PagedList.IPagedList<Save_Our_Pets.Models.solicitud_adopcion>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Solicitudes de Adopción";
+}
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Solicitudes de Adopción</h2>
+        <p>@Html.ActionLink("Listado de adopciones", "Index", "Adopciones", null, new { @class = "btn btn-primary" })</p>
+        <hr />
+        <p>
+            @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success" })
+        </p>
+        <br /><br />
+        <div class="row">
+            @using (Html.BeginForm("Index", "solicitud_adopcion", FormMethod.Get))
+            {
+                <div class="col-md-3">
+                    <label class="control-label">
+                        Buscar por candidato:
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("nombreCandidato", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+                </div>
+
+
+                <label class="control-label col-md-2">
+                    Filtrar por estado:
+                </label>
+                <div class="col-md-3">
+                    @Html.DropDownList("estadoSolicitud", new List<SelectListItem>
+              {
+                  new SelectListItem { Value = "", Text = "Todos" },
+                  new SelectListItem { Value = "0", Text = "En espera" },
+                  new SelectListItem { Value = "1", Text = "Aprobados" },
+                  new SelectListItem { Value = "2", Text = "Rechazados" }
+              },
+                    new { @class = "form-control", @value = ViewBag.FiltroTipo })
+
+
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" value="Buscar" class="btn btn-warning" />
+
+                </div>
+            }
+        </div>
+        <br /><br />
+
+        <table class="table">
+            <tr>
+
+
+                <th>
+                    Candidato
+                </th>
+                <th>
+                    Especie a adoptar
+                </th>
+                <th>
+                    ¿Empleo fijo?
+                </th>
+                <th>
+                    ¿Acepto términos?
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Empleado que modifico:
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuarios.nombres) @Html.DisplayFor(modelItem => item.Usuarios.apellidos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Especie.nombre)
+                    </td>
+                    <td>
+                        @if (item.empleo_fijo == 1)
+                        {
+                            <text>SI</text>
+                        }
+                        else
+                        {
+                            <text>NO</text>
+                        }
+
+                    </td>
+                    <td>
+                        @if (item.requisitos_condiciones == 1)
+                        {
+                            <text>SI</text>
+                        }
+                        else
+                        {
+                            <text>NO</text>
+                        }
+                    </td>
+                    <td>
+                        @if (item.estado_solicitud == 0)
+                        {
+                            <text>En espera</text>
+                        }
+                        else if (item.estado_solicitud == 1)
+                        {
+                            <text>Aceptado</text>
+                        }
+                        else if (item.estado_solicitud == 2)
+                        {
+                            <text>Rechazado</text>
+                        }
+
+                    </td>
+                    <td>
+                        @if (item.Usuarios.id_usuario == item.Usuarios1.id_usuario)
+                        {
+                            <text>SIN APROBACIÓN</text>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Usuarios1.nombres)
+                        }
+
+                    </td>
+                    <td>
+                        <!-- Dropdown de acciones -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Acciones <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Editar", "Edit", new { id = item.id_solicitud }, new { @class = "btn btn-primary" })</li>
+                                <li>@Html.ActionLink("Detalles", "Details", new { id = item.id_solicitud }, new { @class = "btn btn-default" })</li>
+                                <li>
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_solicitud }, new
+                                               {
+                                                   @class = "btn btn-danger",
+                                                   @onclick = "return confirm('¿Desea eliminar este Usuario?');"
+
+                                               })
+                                </li>
+                            </ul>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <!--Controles de paginación-->
+        <div class="pagination">
+            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, currentFilter = ViewBag.CurrentFilter, filtroTipo = ViewBag.FiltroTipo }))
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55fdb7ee83bf4e3a854ff66904400189" Name="Diagram1">
+        <EntityTypeShape EntityType="save_our_petsModel.Adopciones" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.direccion_usuario" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Especie" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Estado_mascota" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Estado_salud" Width="1.5" PointX="7.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.img_mascota" Width="1.5" PointX="7.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Mascota" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Raza" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.reporte_rescate" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.reporte_seguimiento" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Reporte_vacunas" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.solicitud_adopcion" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Tipo_usuario" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Usuarios" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="save_our_petsModel.Vacunas" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="save_our_petsModel.FK__Adopcione__id_ma__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Adopcione__id_ma__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__reporte_s__fecha__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__direccion__direc__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Mascota__id_esta__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Raza__id_especie__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__solicitud__id_es__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Mascota__id_esta__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Estado_sa__id_ma__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__img_masco__id_ma__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Mascota__id_raza__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__reporte_r__fecha__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Reporte_v__fecha__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Reporte_v__id_va__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__solicitud__id_em__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__solicitud__id_em__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="save_our_petsModel.FK__Usuarios__id_tip__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

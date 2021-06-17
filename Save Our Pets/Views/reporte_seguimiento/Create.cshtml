@@ -1,0 +1,56 @@
+﻿@model Save_Our_Pets.Models.reporte_seguimiento
+
+@{
+    ViewBag.Title = "Crear reporte de seguimiento";
+}
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Crear</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>reporte seguimiento</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Seguimiento de la mascota: @ViewBag.mascota , con su dueño: @ViewBag.nombreResponsable
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.id_adopcion, htmlAttributes: new { @class = "form-control", @style = "display:none;" })
+                    @Html.ValidationMessageFor(model => model.id_adopcion, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.comentario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.comentario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fecha_visita, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fecha_visita, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fecha_visita, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        </div></div>

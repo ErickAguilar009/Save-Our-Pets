@@ -1,0 +1,37 @@
+﻿@model Save_Our_Pets.Models.img_mascota
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Detalles</h2>
+        <h4>img_mascota</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.imagen_mascota)
+            </dt>
+
+            <dd>
+                @{ ViewBag.ImagenMascota = "https://localhost:44314/img_mascota/ImagenMascota/" + Html.DisplayFor(model => model.id_imagen);}
+                <img src="@ViewBag.ImagenMascota" alt="" width="275px" height="345px">
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mascota.nombre_mascota)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mascota.nombre_mascota)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_imagen }) |
+        @Html.ActionLink("Volver", "Index",null, new { @class = "btn btn-default" })
+    </p>
+</div>

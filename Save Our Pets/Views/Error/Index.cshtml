@@ -1,0 +1,31 @@
+﻿
+<!-- Error Section -->
+<div class="container-fluid no-padding error-section">
+    <div class="section-padding"></div>
+    <!-- Container -->
+    <div class="container">
+        <h2>Lo sentimos,<span> no se encontró la página que solicitó</span></h2>
+        <img src="~/Content/images/error.jpg" alt="error-img" />
+        <div class="error-box">
+
+            @Html.ActionLink("Ir a inicio", "Index", "Inicio")
+
+
+
+            @if (ViewBag.url != null)
+            {
+                string pather = ViewBag.url;
+                if (pather == "Mascotas")
+                {
+                    @Html.ActionLink("Regresar a página previa", "ListaMascotas", pather)
+                }
+                else
+                {
+                    @Html.ActionLink("Regresar a página previa", "Index", pather)
+                }
+            }
+
+        </div>
+    </div>
+    <div class="section-padding"></div>
+</div><!-- Error Section /- -->

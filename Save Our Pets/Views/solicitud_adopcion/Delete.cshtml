@@ -1,0 +1,80 @@
+﻿@model Save_Our_Pets.Models.solicitud_adopcion
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>solicitud_adopcion</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.empleo_fijo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.empleo_fijo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.requisitos_condiciones)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.requisitos_condiciones)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.estado_solicitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.estado_solicitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Especie.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Especie.nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Usuarios.nombres)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Usuarios.nombres)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Usuarios1.nombres)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Usuarios1.nombres)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

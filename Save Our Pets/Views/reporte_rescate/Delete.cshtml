@@ -1,0 +1,80 @@
+﻿@model Save_Our_Pets.Models.reporte_rescate
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>reporte_rescate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_reporte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_reporte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_rescate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_rescate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascota.nombre_mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mascota.nombre_mascota)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

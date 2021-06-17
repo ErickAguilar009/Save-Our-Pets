@@ -1,0 +1,52 @@
+﻿@model Save_Our_Pets.Models.reporte_seguimiento
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Detalles</h2>
+
+        <div>
+            <h4>reporte_seguimiento</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.visitas_seguimiento)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.visitas_seguimiento)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.comentario)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.comentario)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.fecha_visita)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fecha_visita)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Adopciones.id_adopcion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Adopciones.id_adopcion)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_seguimiento }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+</div></div>

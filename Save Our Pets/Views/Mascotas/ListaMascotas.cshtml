@@ -1,0 +1,140 @@
+﻿@model PagedList.IPagedList<Save_Our_Pets.Models.Mascota>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Lista Mascotas";
+}
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+
+        <h2>Lista de Mascotas</h2>
+
+        <p>
+            @Html.ActionLink("Agregar", "Agregar", null, new { @class = "btn btn-success" })
+            <span style="visibility:hidden;">|||||</span>
+            @Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new { n = "mascotas" }, new { @class = "btn btn-default", @target = "_blank" })
+        </p>
+
+        <br /><br />
+              <div class="row">
+
+                  @using (Html.BeginForm("ListaMascotas", "Mascotas", FormMethod.Get))
+                  {
+                      <label class="control-label col-md-1">
+                          Especie:
+                      </label>
+                      <div class="col-md-3">
+                          @Html.DropDownList("especie", new SelectList(ViewBag.id_especies, "id_especie", "nombre"), "Todos",
+                     new { @class = "form-control", @value = ViewBag.FiltroEspecie })
+                      </div>
+                  
+                      <label class="control-label col-md-1">
+                          Raza:
+                      </label>
+                      <div class="col-md-3">
+                          @Html.DropDownList("raza", new SelectList(ViewBag.id_razas, "id_raza", "nombre"),"Todos",
+                     new { @class = "form-control", @value = ViewBag.FiltroRaza })
+
+                          
+                      </div>
+                      <div class="col-md-3">
+                          <input type="submit" class="btn btn-primary" value="Buscar" />
+                      </div>
+                  }
+              </div>
+        <br /><br />
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().nombre_mascota)
+                </th>
+                <th>
+                    Fecha Nacimiento
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().peso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().esterilizado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Especie.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Estado_mascota.nombre_estado)
+                </th>
+                <th>
+                    Raza
+                </th>
+                <th>
+                    Acciones
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_mascota)
+                    </td>
+                    <td>
+                        @if (item.fecha_nacimiento != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+                        }
+                        else
+                        {
+                            <p>Desconocida</p>
+                        }
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.peso) Kg
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.esterilizado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Especie.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado_mascota.nombre_estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Raza.nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_mascota }) |
+                        @Html.ActionLink("Ver", "Ver", new { id = item.id_mascota }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id_mascota }, new
+                                           {
+                                               @class = "btn btn-danger",
+                                               @onclick = "return confirm('¿Desea eliminar esta mascota?');"
+
+                                           })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <!--Controles de paginación-->
+        <div class="pagination">
+            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("ListaMascotas",
+                new { page, currentFilter = ViewBag.FiltroEspecie, filtroRaza = ViewBag.FiltroRaza }))
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function submitform() {
+        $('form').submit();
+    }
+</script>

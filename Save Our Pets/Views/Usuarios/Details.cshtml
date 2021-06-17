@@ -1,0 +1,52 @@
+﻿@model Save_Our_Pets.Models.DatosUsuario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Detalles</h2>
+
+        <h4>Usuarios</h4>
+        <hr />
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Datos Personales</div>
+                <div class="panel-body">
+                    <p>Nombre completo: @Html.DisplayFor(model => model.datos_usuario.nombres) @Html.DisplayFor(model => model.datos_usuario.apellidos)</p>
+
+                    <p>Email: @Html.DisplayFor(model => model.datos_usuario.email)</p>
+                    <p>Teléfono: @Html.DisplayFor(model => model.datos_usuario.telefono)</p>
+                    <p>DUI: @Html.DisplayFor(model => model.datos_usuario.DUI)</p>
+                    <p>Fecha de nacimiento: @Html.DisplayFor(model => model.datos_usuario.fecha_nacimiento)</p>
+                    <p>Tipo:  @Html.DisplayFor(model => model.datos_usuario.Tipo_usuario.nombre_tipo)</p>
+                </div>
+            </div>
+        </div>
+
+        @if ((Model.direcc_usuario != null))
+        {
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos de Dirección</div>
+                    <div class="panel-body">
+                        <p>Departamento: @(Model.direcc_usuario.departamento)</p>
+                        <p>Municipio: @(Model.direcc_usuario.municipio)</p>
+                        <p>Dirección: @(Model.direcc_usuario.direccion)</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    
+    <div class="col-md-2">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.datos_usuario.id_usuario }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+        <br /><br />
+        @Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new { n = "usuarios/" + Model.datos_usuario.id_usuario }, new { @class = "btn btn-default", @target = "_blank" })
+    </div>
+
+    
+</div>

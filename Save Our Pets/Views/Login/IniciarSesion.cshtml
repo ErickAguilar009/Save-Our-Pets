@@ -1,0 +1,63 @@
+﻿	<!-- Checkout Content -->
+<div class="container-fluid no-padding checkout-content">
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+
+            <!-- User Login -->
+            <div class="col-md-6 user-login">
+                <div class="section-padding"></div>
+                <div class="section-title center-block">
+                    <h3>Iniciar Sesión</h3>
+                </div>
+
+
+                <div class="new-user-registeration">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-12">Correo electrónico:*</label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="email" class="form-control" name="usuario" id="user-email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-12">Contraseña:*</label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="password" class="form-control" name="password" id="user-pwd" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pull-right">
+                            @Html.ActionLink("¿Has Perdido tu contraseña?", "Reestablecer", "Login")
+                            <button type="submit" class="btn-register btn-sign-in">Iniciar sesión</button>
+                        </div>
+                    }
+
+                </div>
+
+
+            </div><!-- User Login /- -->
+
+            
+
+            <div class="col-md-6 center-block">
+                <div class="section-padding"></div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8"><img src="~/Content/images/services/marthijn-brinks-XiHyfOKmDIs-unsplash.jpg" alt="Service"></div>
+                    <div class="col-md-2"></div>
+                </div>
+                    
+                                
+            </div>
+
+        </div>
+
+
+
+    </div><!-- Container /- -->
+
+</div><!-- Checkout Content /- -->
+

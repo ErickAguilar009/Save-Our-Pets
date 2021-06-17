@@ -1,0 +1,98 @@
+﻿@model Save_Our_Pets.Models.solicitud_adopcion
+<div class="container">
+<div class="col-md-8 col-md-offset-2">
+    <h2>Detalles</h2>
+
+    <div>
+        <h4>Solicitud # @(Model.id_solicitud)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                ¿Posee empleo fijo?
+            </dt>
+
+            <dd>
+                @if (Model.empleo_fijo == 1)
+                {
+                    <text>SI</text>
+                }
+                else
+                {
+                    <text>NO</text>
+                }
+            </dd>
+
+            <dt>
+                Términos y condiciones
+            </dt>
+
+            <dd>
+                @if (Model.requisitos_condiciones == 1)
+                {
+                    <text>SI</text>
+                }
+                else
+                {
+                    <text>NO</text>
+                }
+            </dd>
+
+            <dt>
+                Estado de la solicitud
+            </dt>
+
+            <dd>
+                @if (Model.estado_solicitud == 0)
+                {
+                    <text>En espera</text>
+                }
+                else if (Model.estado_solicitud == 1)
+                {
+                    <text>Aceptado</text>
+                }
+                else if (Model.estado_solicitud == 2)
+                {
+                    <text>Rechazado</text>
+                }
+            </dd>
+
+            <dt>
+                Especie a adoptar
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Especie.nombre)
+            </dd>
+
+            <dt>
+                Candidato
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Usuarios.nombres)
+            </dd>
+
+            <dt>
+                Empleado que modifico la solicitud:
+            </dt>
+
+            <dd>
+                @if (Model.Usuarios.id_usuario == Model.Usuarios1.id_usuario)
+                {
+                    <text>SIN APROBACIÓN</text>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => Model.Usuarios1.nombres)
+                }
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_solicitud }) |
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+
+    </p>
+
+    </div></div>

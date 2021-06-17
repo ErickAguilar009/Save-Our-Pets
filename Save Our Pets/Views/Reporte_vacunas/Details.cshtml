@@ -1,0 +1,53 @@
+﻿@model Save_Our_Pets.Models.Reporte_vacunas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Detalles</h2>
+
+        <div>
+            <h4>Reporte de vacunas</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.fecha_aplicada)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fecha_aplicada)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.fecha_a_aplicar_nueva)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fecha_a_aplicar_nueva)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Mascota.nombre_mascota)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Mascota.nombre_mascota)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Vacunas.vacuna)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Vacunas.vacuna)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id_vacuna_aplicada }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        </div></div>

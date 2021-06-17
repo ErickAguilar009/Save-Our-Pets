@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Save_Our_Pets.Models.Estado_mascota>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Lista</h2>
+
+        <p>
+            @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre_estado)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_estado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_estado }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.id_estado }, new { @class = "btn btn-default" }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id_estado }, new
+                   {
+                       @class = "btn btn-danger",
+                       @onclick = "return confirm('¿Desea eliminar este estado de mascota?');"
+
+                   })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

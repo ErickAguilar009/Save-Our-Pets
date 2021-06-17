@@ -1,0 +1,27 @@
+﻿@model Save_Our_Pets.Models.Tipo_usuario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Detalles</h2>
+        <h4>Tipo_usuario</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre_tipo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre_tipo)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_tipo }) |
+        @Html.ActionLink("Volver", "Index",null, new { @class = "btn btn-default" })
+    </p>
+</div>

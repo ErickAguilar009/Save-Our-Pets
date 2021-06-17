@@ -1,0 +1,223 @@
+﻿@model Save_Our_Pets.Models.DatosMascota
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        
+            
+        <h2>Detalles</h2>
+        <h4>Mascota</h4>
+        
+        <hr />
+
+        <div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+
+                    <div class="contenedor_imagenes">
+
+                        @foreach (var img in Model.id_imagenes)
+                        {
+
+                            <div class="container_img">
+
+                                @{ViewBag.ImagenMascota = "https://localhost:44314/img_mascota/ImagenMascota/" + @img;}
+                                <img class="image" src="@ViewBag.ImagenMascota" style="width:200px; height:225px;">
+
+                                <div class="overlay">
+                                    <div class="text">
+                                        <p>Acciones</p>
+                                        @Html.ActionLink("Editar", "Edit", "img_mascota", new { id = img }, new { @class = "btn btn-primary" })
+
+                                        <a class="btn btn-default" onclick="alertify.alert('Imagen de Mascota','<img src=\'@ViewBag.ImagenMascota\' style=\'width:70%;\'/>');">Ver</a>
+
+                                        @Html.ActionLink("Eliminar", "Delete", "img_mascota", new { id = img }, new
+                                                   {
+                                                       @class = "btn btn-danger",
+                                                       @onclick = "return confirm('¿Desea eliminar esta imagen?');"
+
+                                                   })
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+                    </div>
+                    @Html.ActionLink("Agregar imagen", "Create", "img_mascota", new {id = Model.infoMascota.id_mascota } , new { @class = "btn btn-primary" })
+
+
+                    <hr />
+                    <div>
+                        <h4>Vacunas</h4>
+                        @Html.ActionLink("Agregar vacunación", "Create", "Reporte_vacunas", new { id = Model.infoMascota.id_mascota }, new { @class = "btn btn-success" })
+                    </div>
+
+
+                    <div>
+                        @{
+                            int counter = 0;
+                        }
+                        @if (Model.infoVacunas.Count <= 0)
+                        {
+                            <text><p class="text-danger">Esta mascota no posee ninguna vacuna por el momento</p></text>
+                        }
+                        else
+                        {
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Vacuna</th>
+                                        <th scope="col">Fecha aplicada</th>
+                                        <th scope="col">Fecha a aplicar nuevamente</th>
+                                    </tr>
+                                </thead>
+
+                                @foreach (var itemVacuna in Model.infoVacunas)
+                                {
+                                    counter++;
+                                    <tr>
+                                        <th scope="row">@(counter)</th>
+                                        <td>@itemVacuna.Vacunas.vacuna</td>
+                                        <td>@itemVacuna.fecha_aplicada.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@itemVacuna.fecha_a_aplicar_nueva.Value.ToString("dd/MM/yyyy")</td>
+                                    </tr>
+
+                                }
+
+                                <tbody>
+                                </tbody>
+                            </table>
+                        }
+
+
+                        @if (Model.infoMascota.id_estado == 2)
+                        {
+
+                            <hr />
+                            <div>
+                                <h4>Reporte de seguimiento</h4>
+                                @Html.ActionLink("Agregar visita", "Create", "reporte_seguimiento", new { id = Model.infoMascota.id_mascota }, new { @class = "btn btn-success" })
+                            </div>
+                            <div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Visita N°</th>
+                                            <th scope="col">Fecha de la visita</th>
+                                            <th scope="col">Comentario</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    @{int counter2 = 0;
+                                    }
+
+
+                                    @foreach (var itemVisita in Model.listaSeguimiento)
+                                    {
+                                        counter2++;
+                                        <tr>
+                                            <th scope="row">@counter2</th>
+                                            <td>@itemVisita.visitas_seguimiento</td>
+                                            <td>@itemVisita.fecha_visita.Value.ToString("dd/MM/yyyy")</td>
+                                            <td>@itemVisita.comentario</td>
+                                        </tr>
+
+                                    }
+
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        }
+
+
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    
+                    <div>
+                        <p>Nombre: @Html.DisplayFor(model => model.infoMascota.nombre_mascota)</p>
+                        <p>
+                            @Html.DisplayNameFor(model => model.infoMascota.color_pelo):
+                            @Html.DisplayFor(model => model.infoMascota.color_pelo)
+                        </p>
+                        <p>
+                            @Html.DisplayNameFor(model => model.infoMascota.fecha_nacimiento):
+                            @if (String.IsNullOrEmpty(Model.infoMascota.fecha_nacimiento))
+                            {
+                                <text>No posee fecha de nacimiento agregada</text>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.infoMascota.fecha_nacimiento)
+                            }
+
+                        </p>
+                        <p>
+                            @Html.DisplayNameFor(model => model.infoMascota.peso):
+                            @Html.DisplayFor(model => model.infoMascota.peso) Kg
+                        </p>
+                        <p>
+                            @Html.DisplayNameFor(model => model.infoMascota.esterilizado):
+                            @Html.DisplayFor(model => model.infoMascota.esterilizado)
+                        </p>
+                        <p>
+                            @Html.DisplayNameFor(model => model.infoMascota.Especie.nombre):
+                            @Html.DisplayFor(model => model.infoMascota.Especie.nombre)
+                        </p>
+
+                        <p>
+                            Estado:
+
+                            @Html.DisplayFor(model => model.infoMascota.Estado_mascota.nombre_estado)
+                        </p>
+                        <p>
+                            Raza:
+
+                            @Html.DisplayFor(model => model.infoMascota.Raza.nombre)
+                        </p>
+                        <p>
+                            Estado de salud:
+
+                            @Html.DisplayFor(model => model.saludMascota.descripcion_salud)
+                        </p>
+                    </div>
+
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.infoMascota.id_mascota }, new { @class = "btn btn-warning" }) |
+                        @Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new { n = "mascotas/" + Model.infoMascota.id_mascota }, new { @class = "btn btn-default", @target = "_blank" }) |
+                        @Html.ActionLink("Volver", "ListaMascotas", null, new { @class = "btn btn-primary" })
+                    </p>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        
+
+    </div>
+
+    
+
+</div>
+

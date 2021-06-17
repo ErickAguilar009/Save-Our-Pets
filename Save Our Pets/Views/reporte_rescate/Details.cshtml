@@ -1,0 +1,54 @@
+﻿@model Save_Our_Pets.Models.DatosReporte
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Detalles</h2>
+
+        <div>
+            <h4>reporte_rescate</h4>
+            <hr />
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos del Reporte</div>
+                    <div class="panel-body">
+                        <p>Nombre de la mascota: @Html.DisplayFor(model => model.infoMascota.nombre_mascota) </p>
+                        <p>Especie: @Html.DisplayFor(model => model.infoMascota.Especie.nombre) </p>
+                        <p>Raza: @Html.DisplayFor(model => model.infoMascota.Raza.nombre)</p>
+                        <p>Color de Pelo: @Html.DisplayFor(model => model.infoMascota.color_pelo)</p>
+                        <p>Fecha de Nacimiento: @Html.DisplayFor(model => model.infoMascota.fecha_nacimiento)</p>
+                        <p>Peso: @Html.DisplayFor(model => model.infoMascota.peso)</p>
+                        <p>Esterilizado:  @Html.DisplayFor(model => model.infoMascota.esterilizado)</p>
+                        <p>Estado:  @Html.DisplayFor(model => model.infoMascota.Estado_mascota.nombre_estado)</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Datos del Reporte</div>
+                    <div class="panel-body">
+                        <p>Visto la última vez:</p>
+                        <p>Dirección:  @Html.DisplayFor(model => model.infoRescate.direccion)</p>
+                        <p>Descripción:  @Html.DisplayFor(model => model.infoRescate.descripcion)</p>
+                        <hr />
+                        <p>Para mayor información contactar a:</p>
+                        <p>Email:  @Html.DisplayFor(model => model.infoRescate.email)</p>
+                        <p>Telefono:  @Html.DisplayFor(model => model.infoRescate.telefono)</p>
+
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.infoRescate.id_solicitud }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        </div></div>

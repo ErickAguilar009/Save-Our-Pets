@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+
+<html class="">
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title | Save Our Pets </title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Content/images/favicon.png" />
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/images/favicon-114x114.png">
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/images/favicon-72x72.png">
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="~/Content/images/favicon-57x57.png">
+
+
+    <!-- Library - Google Font Familys -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>-->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>-->
+
+    <link rel="stylesheet" type="text/css" href="~/Content/libraries/fonts/font-awesome.min.css">
+
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/libraries")
+
+</head>
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+    <!-- Loader -->
+    <div id="site-loader" class="load-complete">
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate">
+                <div></div>
+            </div>
+        </div>
+    </div><!-- Loader /- -->
+
+    <a id="top"></a>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header-main">
+            <!-- Top Header -->
+            <div class="top-header container-fluid no-padding">
+                <div class="col-md-4 col-sm-4 col-xs-4 no-padding color-red"></div>
+                <div class="col-md-4 col-sm-4 col-xs-4 no-padding color-green"></div>
+                <div class="col-md-4 col-sm-4 col-xs-4 no-padding color-yellow"></div>
+                <!-- Container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-6">
+                            <p>Deja un mensaje: <a href="mailto:saveourpets.sv@gmail.com">saveourpets.sv@gmail.com</a></p>
+                        </div>
+                        <div class="social col-md-4 col-sm-4 col-xs-6 pull-right">
+                            <ul class="no-bottom-margin">
+                                <li><a href="https://twitter.com/CatDogSV"><img src="~/Content/images/icon/tw-ic.png" alt="Twitter" /></a></li>
+                                <li><a href="https://www.facebook.com/HOGARDEMASCOTASDESAMPARADAS/"><img src="~/Content/images/icon/fb-ic.png" alt="Facebook" /></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- container /- -->
+            </div><!-- Top Header /- -->
+            <!-- Logo Block -->
+            <div class="middle-header container-fluid no-padding">
+                <!-- Container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 logo-block pull-left">
+                            <a href="/">
+                                <img src="~/Content/images/logo.png" alt="Logo" />
+                            </a>
+                        </div>
+                        <div class="col-md-9 pull-right">
+                            <div class="location">
+                                <img src="~/Content/images/icon/location-ic.png" alt="Location" />
+                                <p><span>Nuestra ubicación</span> 27 Calle Poniente #211, San Salvador</p>
+                            </div>
+                            <div class="time-scheduled">
+                                <img src="~/Content/images/icon/time-ic.png" alt="time" />
+                                <p><span>Lun - Dom</span> 9 am - 5 pm</p>
+                            </div>
+                            <div class="phone">
+                                <img src="~/Content/images/icon/phone-ic.png" alt="phone" />
+                                <p><span>Contáctenos al</span> +503 7440 0447</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!-- Container /- -->
+            </div><!-- Logo Block /- -->
+            <nav class="navbar ow-navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="navbar-brand logo-block">
+                                <a href="#">
+                                    <img src="~/Content/images/logo.png" alt="Logo" />
+                                </a>
+                            </div>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                @if (ViewBag.Title == "Inicio")
+                                {
+                                    <li class="active"> @Html.ActionLink("Inicio", "Index", "Inicio")</li>
+                                }
+                                else
+                                {
+                                    <li> @Html.ActionLink("Inicio", "Index", "Inicio")</li>
+                                }
+
+                                @if (ViewBag.Title == "Acerca De")
+                                {
+                                    <li class="active">@Html.ActionLink("Acerca De", "AcercaDe", "Inicio")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Acerca De", "AcercaDe", "Inicio")</li>
+                                }
+
+                                @if (ViewBag.Title == "Adopciones")
+                                {
+                                    <li class="active">@Html.ActionLink("Adopciones", "Adopciones", "Inicio")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Adopciones", "Adopciones", "Inicio")</li>
+                                }
+
+                                @if (ViewBag.Title == "Contáctanos")
+                                {
+                                    <li class="active">@Html.ActionLink("Contáctanos", "Contactanos", "Inicio")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Contáctanos", "Contactanos", "Inicio")</li>
+                                }
+                                @if (System.Web.HttpContext.Current.Session["usuario"] != null)
+                                {
+                                    if (Convert.ToInt32(System.Web.HttpContext.Current.Session["tipo_usuario"]) != 3)
+                                    {
+                                        <li class="dropdown active">
+                                            @Html.ActionLink("Administrar", "Index", "Administracion", null, new { @class = "dropdown-toggle", @role = "button" })
+                                            <i class="ddl-switch fa fa-angle-down"></i>
+                                            <ul class="dropdown-menu">
+                                                @if (Convert.ToInt32(System.Web.HttpContext.Current.Session["tipo_usuario"]) == 1)
+                                                {
+                                                    <li> @Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                                                }
+                                                <li>@Html.ActionLink("Mascotas", "ListaMascotas", "Mascotas")</li>
+                                                <li> @Html.ActionLink("Adopciones", "Index", "solicitud_adopcion")</li>
+                                                <li>@Html.ActionLink("Reportes", "Index", "reporte_rescate")</li>
+                                                <li>@Html.ActionLink("Estados de mascota", "Index", "Estado_mascota")</li>
+                                                <li>@Html.ActionLink("Especies", "Index", "Especies")</li>
+                                                <li>@Html.ActionLink("Razas", "Index", "Razas")</li>
+                                                <li> @Html.ActionLink("Vacunas", "Index", "Vacunas")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li> @Html.ActionLink("Perfil", "Index", "Perfil")</li>
+                                    }
+
+                                }
+
+                            </ul>
+                        </div>
+                        @if (System.Web.HttpContext.Current.Session["usuario"] == null)
+                        {
+                            @Html.ActionLink("Iniciar Sesión", "IniciarSesion", "Login")
+
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Cerrar Sesión", "Cerrar", "Login")
+                        }
+                    </div>
+                </div>
+            </nav>
+        </header><!-- Header /- -->
+
+        @RenderBody();
+
+        <footer class="footer-main">
+            <!-- Container -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <aside class="widget widget-about">
+                            <h3 class="widget-title">Acerca De</h3>
+                            <p>
+                                Fundación <b>Save Our Pets</b> es un hogar de mascotas desamparadas que inicio de un grupo familiar,
+                                que por sus propios medios y recursos se dedico a realizar el rescate de animales...@Html.ActionLink("(leer más)", "AcercaDe", "Inicio")
+                            </p>
+                            <ul>
+                                <li><img src="~/Content/images/icon/ftr-location.png" alt="Address" />27 Calle Poniente #211, <span>San Salvador</span></li>
+                                <li><img src="~/Content/images/icon/ftr-customer.png" alt="Phone" /> Teléfono de contacto: <span>+503 7440 0447</span></li>
+                                <li><img src="~/Content/images/icon/ftr-email.png" alt="Mail" /><span>Email :</span><a href="mailto:saveourpets.sv@gmail.com"> saveourpets.sv@gmail.com</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <aside class="widget widget-links">
+                            <h3 class="widget-title">Horarios</h3>
+                            <ul>
+                                <li>Lunes <span>09:00 am  -  05:00 pm</span></li>
+                                <li>Martes <span>09:00 am  -  05:00 pm</span></li>
+                                <li>Miércoles <span>09:00 am  -  05:00 pm</span></li>
+                                <li>Jueves <span>09:00 am  -  05:00 pm</span></li>
+                                <li>Viernes <span>09:00 am  -  05:00 pm</span></li>
+                                <li>Sábado <span>10:00 am  -  12:00 pm</span></li>
+                                <li>Domingo <span>09:00 am  -  05:00 pm</span></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <aside class="widget widget-subscribe">
+                            <div class="subscribe-box">
+                                <h4>¿Deseas hacer una donación?</h4>
+                                <p>Mira los diferentes medios para donar a nuestra organización &hearts;</p>
+                                <div class="input-group">
+                                    <img src="~/Content/images/icon/visa-master-card.png" />
+                                </div><!-- /input-group -->
+                            </div>
+                            <ul>
+                                <li><a href="https://www.facebook.com/HOGARDEMASCOTASDESAMPARADAS/"><img src="~/Content/images/icon/ftr-fb.png" alt="ftr" /></a></li>
+                                <li><a href="https://twitter.com/CatDogSV"><img src="~/Content/images/icon/ftr-tw.png" alt="ftr" /></a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div><!-- Container /- -->
+            <div class="bottom-footer container-fluid no-padding">
+                <div class="container">
+                    <div class="row">
+                        <!--<ul class="col-md-5 pull-left">
+                            <li><a href="#">Faq</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Client Support</a></li>
+                        </ul>-->
+
+                        <div class="col-md-7 pull-right">
+                            <p class="copyright">&copy; @DateTime.Now.Year Fundación Save Our Pets</p>
+                            <p class="copyright">&copy;Derechos reservados UDB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div><!-- Main Container -->
+    @* @Scripts.Render("~/bundles/js")
+        @Scripts.Render("~/bundles/jsval")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/libraries_js")*@
+    <!-- JQuery v1.11.3 -->
+    <script src="~/Content/js/jquery.min.js"></script>
+
+    <!-- Library - Modernizer -->
+    <script src="~/Content/libraries/modernizr/modernizr.js"></script>
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <script src="~/Content/libraries/bootstrap/bootstrap.min.js"></script><!-- Bootstrap JS File v3.3.5 -->
+    <!-- jQuery Easing v1.3 -->
+    <script src="~/Content/js/jquery.easing.min.js"></script>
+
+    <!-- Library - jQuery.appear -->
+    <script src="~/Content/libraries/appear/jquery.appear.js"></script>
+
+    <!-- Library - OWL Carousel V.2.0 beta -->
+    <script src="~/Content/libraries/owl-carousel/owl.carousel.min.js"></script>
+
+    <!-- jQuery For Number Counter -->
+    <script src="~/Content/libraries/number/jquery.animateNumber.min.js"></script>
+
+    <!-- Library - Theme JS -->
+    <script src="~/Content/js/functions.js"></script>
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
+    </script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js">
+    </script>
+
+    <script src="~/Content/js/alertify.js"></script>
+
+    @*Mensajes *@
+    @{
+        if (TempData["successMessage"] != null)
+        {
+            <script>
+
+                alertify.success('@TempData["successMessage"]')
+
+
+            </script>
+            TempData["successMessage"] = null;
+        }
+
+        if (TempData["errorMessage"] != null)
+        {
+            <script>
+
+                alertify.error('@TempData["errorMessage"]')
+            </script>
+            TempData["errorMessage"] = null;
+
+
+        }
+    }
+
+</body>
+</html>

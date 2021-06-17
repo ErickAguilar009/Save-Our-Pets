@@ -1,0 +1,701 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C54B8E0E-D2FA-466B-8994-15632672C29F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Save_Our_Pets</RootNamespace>
+    <AssemblyName>Save Our Pets</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44314</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\alertify.css" />
+    <Content Include="Content\css\alertify.min.css" />
+    <Content Include="Content\css\alertify.rtl.css" />
+    <Content Include="Content\css\alertify.rtl.min.css" />
+    <Content Include="Content\css\navigation-menu.css" />
+    <Content Include="Content\css\plugins.css" />
+    <Content Include="Content\css\shortcodes.css" />
+    <Content Include="Content\css\themes\bootstrap.css" />
+    <Content Include="Content\css\themes\bootstrap.min.css" />
+    <Content Include="Content\css\themes\bootstrap.rtl.css" />
+    <Content Include="Content\css\themes\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\themes\default.css" />
+    <Content Include="Content\css\themes\default.min.css" />
+    <Content Include="Content\css\themes\default.rtl.css" />
+    <Content Include="Content\css\themes\default.rtl.min.css" />
+    <Content Include="Content\css\themes\semantic.css" />
+    <Content Include="Content\css\themes\semantic.min.css" />
+    <Content Include="Content\css\themes\semantic.rtl.css" />
+    <Content Include="Content\css\themes\semantic.rtl.min.css" />
+    <Content Include="Content\fonts\montserrat-light.svg" />
+    <Content Include="Content\fonts\montserrat-semibold.svg" />
+    <Content Include="Content\images\apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="Content\images\apple-touch-icon-57x57-precomposed.png" />
+    <Content Include="Content\images\apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="Content\images\appointment\appointment.jpg" />
+    <Content Include="Content\images\author\author.jpg" />
+    <Content Include="Content\images\blog\banner-1.jpg" />
+    <Content Include="Content\images\blog\blog-1.jpg" />
+    <Content Include="Content\images\blog\blog-2.jpg" />
+    <Content Include="Content\images\blog\blog-3.jpg" />
+    <Content Include="Content\images\blog\blog-4.jpg" />
+    <Content Include="Content\images\blog\blog-5.jpg" />
+    <Content Include="Content\images\blog\blog-thumb-1.jpg" />
+    <Content Include="Content\images\blog\blog-thumb-2.jpg" />
+    <Content Include="Content\images\blog\blog-thumb-3.jpg" />
+    <Content Include="Content\images\blog\blog-thumb-4.jpg" />
+    <Content Include="Content\images\blog\home-blog-1.jpg" />
+    <Content Include="Content\images\blog\home-blog-2.jpg" />
+    <Content Include="Content\images\blog\home-blog-3.jpg" />
+    <Content Include="Content\images\blog\section-seprator.png" />
+    <Content Include="Content\images\brands\brand-1.jpg" />
+    <Content Include="Content\images\brands\brand-2.jpg" />
+    <Content Include="Content\images\brands\brand-3.jpg" />
+    <Content Include="Content\images\brands\brand-4.jpg" />
+    <Content Include="Content\images\brands\brand-5.jpg" />
+    <Content Include="Content\images\brands\brand-6.jpg" />
+    <Content Include="Content\images\callout\callout.jpg" />
+    <Content Include="Content\images\comment\comment-1.jpg" />
+    <Content Include="Content\images\comment\comment-2.jpg" />
+    <Content Include="Content\images\comment\comment-3.jpg" />
+    <Content Include="Content\images\counter\counter-1.png" />
+    <Content Include="Content\images\counter\counter-2.png" />
+    <Content Include="Content\images\counter\counter-3.png" />
+    <Content Include="Content\images\counter\counter-4.png" />
+    <Content Include="Content\images\counter\counter.jpg" />
+    <Content Include="Content\images\error.jpg" />
+    <Content Include="Content\images\favicon-114x114.png" />
+    <Content Include="Content\images\favicon-57x57.png" />
+    <Content Include="Content\images\favicon-72x72.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\favicon.png" />
+    <Content Include="Content\images\icon\addto-1.png" />
+    <Content Include="Content\images\icon\addto-2.png" />
+    <Content Include="Content\images\icon\addto-3.png" />
+    <Content Include="Content\images\icon\addto-cart.png" />
+    <Content Include="Content\images\icon\addtocart.png" />
+    <Content Include="Content\images\icon\admin-ic.png" />
+    <Content Include="Content\images\icon\blog-like.png" />
+    <Content Include="Content\images\icon\calander.png" />
+    <Content Include="Content\images\icon\camp.png" />
+    <Content Include="Content\images\icon\care.png" />
+    <Content Include="Content\images\icon\cart-ic.png" />
+    <Content Include="Content\images\icon\comment.png" />
+    <Content Include="Content\images\icon\customer-support.png" />
+    <Content Include="Content\images\icon\dogfeek.png" />
+    <Content Include="Content\images\icon\dribbble-ic.png" />
+    <Content Include="Content\images\icon\error.jpg" />
+    <Content Include="Content\images\icon\fb-ic.png" />
+    <Content Include="Content\images\icon\ftr-customer.png" />
+    <Content Include="Content\images\icon\ftr-dribbble.png" />
+    <Content Include="Content\images\icon\ftr-email.png" />
+    <Content Include="Content\images\icon\ftr-fb.png" />
+    <Content Include="Content\images\icon\ftr-g+.png" />
+    <Content Include="Content\images\icon\ftr-link.png" />
+    <Content Include="Content\images\icon\ftr-ln.png" />
+    <Content Include="Content\images\icon\ftr-location.png" />
+    <Content Include="Content\images\icon\ftr-tumbler.png" />
+    <Content Include="Content\images\icon\ftr-tw.png" />
+    <Content Include="Content\images\icon\g+-ic.png" />
+    <Content Include="Content\images\icon\home.png" />
+    <Content Include="Content\images\icon\in-ic.png" />
+    <Content Include="Content\images\icon\insurance.png" />
+    <Content Include="Content\images\icon\intro-icon-1.png" />
+    <Content Include="Content\images\icon\intro-icon-2.png" />
+    <Content Include="Content\images\icon\intro-icon-3.png" />
+    <Content Include="Content\images\icon\like-icon.png" />
+    <Content Include="Content\images\icon\location-ic.png" />
+    <Content Include="Content\images\icon\medal.png" />
+    <Content Include="Content\images\icon\nutrition.png" />
+    <Content Include="Content\images\icon\phone-ic.png" />
+    <Content Include="Content\images\icon\product-remove.png" />
+    <Content Include="Content\images\icon\quotes.png" />
+    <Content Include="Content\images\icon\search.png" />
+    <Content Include="Content\images\icon\separator-1.png" />
+    <Content Include="Content\images\icon\separator-2.png" />
+    <Content Include="Content\images\icon\separator-3.png" />
+    <Content Include="Content\images\icon\separator.jpg" />
+    <Content Include="Content\images\icon\seprator-1.png" />
+    <Content Include="Content\images\icon\share.png" />
+    <Content Include="Content\images\icon\tags.png" />
+    <Content Include="Content\images\icon\time-ic.png" />
+    <Content Include="Content\images\icon\time.png" />
+    <Content Include="Content\images\icon\tumbler-ic.png" />
+    <Content Include="Content\images\icon\tw-ic.png" />
+    <Content Include="Content\images\icon\visa-master-card.png" />
+    <Content Include="Content\images\icon\wishlist.png" />
+    <Content Include="Content\images\intro\adam-griffith-swkkiitjmyc-unsp.jpg" />
+    <Content Include="Content\images\intro\alvan-nee-lvflpqevurm-unspl.jpg" />
+    <Content Include="Content\images\intro\intro-1.jpg" />
+    <Content Include="Content\images\intro\intro-2.jpg" />
+    <Content Include="Content\images\intro\intro-3.jpg" />
+    <Content Include="Content\images\intro\intro.jpg" />
+    <Content Include="Content\images\intro\jamie-street-s9tf1ebdfqw-unspl.jpg" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo_for_pdf.png" />
+    <Content Include="Content\images\marker.png" />
+    <Content Include="Content\images\no_image.jpg" />
+    <Content Include="Content\images\offer\offer-1.jpg" />
+    <Content Include="Content\images\offer\offer-2.jpg" />
+    <Content Include="Content\images\offer\offer.jpg" />
+    <Content Include="Content\images\offer\pattern.png" />
+    <Content Include="Content\images\pricing\price.jpg" />
+    <Content Include="Content\images\product\product-1.jpg" />
+    <Content Include="Content\images\product\product-2.jpg" />
+    <Content Include="Content\images\services\markus-winkler-PcKhVNNyEio-unsplash.jpg" />
+    <Content Include="Content\images\services\marthijn-brinks-XiHyfOKmDIs-unsplash.jpg" />
+    <Content Include="Content\images\services\services-1.png" />
+    <Content Include="Content\images\services\services.jpg" />
+    <Content Include="Content\images\services\__-drz-__-KxyAfJoWnkA2-unsplash.jpg" />
+    <Content Include="Content\images\shop\pets-1.jpg" />
+    <Content Include="Content\images\shop\pets-10.jpg" />
+    <Content Include="Content\images\shop\pets-11.jpg" />
+    <Content Include="Content\images\shop\pets-12.jpg" />
+    <Content Include="Content\images\shop\pets-2.jpg" />
+    <Content Include="Content\images\shop\pets-3.jpg" />
+    <Content Include="Content\images\shop\pets-4.jpg" />
+    <Content Include="Content\images\shop\pets-5.jpg" />
+    <Content Include="Content\images\shop\pets-6.jpg" />
+    <Content Include="Content\images\shop\pets-7.jpg" />
+    <Content Include="Content\images\shop\pets-8.jpg" />
+    <Content Include="Content\images\shop\pets-9.jpg" />
+    <Content Include="Content\images\shop\seller-1.jpg" />
+    <Content Include="Content\images\shop\seller-2.jpg" />
+    <Content Include="Content\images\shop\seller-3.jpg" />
+    <Content Include="Content\images\shop\shop-1.jpg" />
+    <Content Include="Content\images\shop\shop-10.jpg" />
+    <Content Include="Content\images\shop\shop-11.jpg" />
+    <Content Include="Content\images\shop\shop-12.jpg" />
+    <Content Include="Content\images\shop\shop-2.jpg" />
+    <Content Include="Content\images\shop\shop-3.jpg" />
+    <Content Include="Content\images\shop\shop-4.jpg" />
+    <Content Include="Content\images\shop\shop-5.jpg" />
+    <Content Include="Content\images\shop\shop-6.jpg" />
+    <Content Include="Content\images\shop\shop-7.jpg" />
+    <Content Include="Content\images\shop\shop-8.jpg" />
+    <Content Include="Content\images\shop\shop-9.jpg" />
+    <Content Include="Content\images\shop\single-product.jpg" />
+    <Content Include="Content\images\shop\Untitled-7.jpg" />
+    <Content Include="Content\images\slider-image\anoir-chafik-2_3c4dIFYFU-unsplash.jpg" />
+    <Content Include="Content\images\slider-image\destiny-wiens-oHm8scWafA0-unsplash.jpg" />
+    <Content Include="Content\images\slider-image\madeline-bowen-O3L9n7_QI70-unsplash.jpg" />
+    <Content Include="Content\images\slider-image\slider-1.jpg" />
+    <Content Include="Content\images\slider-image\slider-2.jpg" />
+    <Content Include="Content\images\slider-image\slider-3.jpg" />
+    <Content Include="Content\images\team\logo_udb.png" />
+    <Content Include="Content\images\team\team-member-1.jpg" />
+    <Content Include="Content\images\team\team-member-2.jpg" />
+    <Content Include="Content\images\team\team-member-3.jpg" />
+    <Content Include="Content\images\team\team-member-4.jpg" />
+    <Content Include="Content\images\testimonial\avatar-1.jpg" />
+    <Content Include="Content\images\testimonial\avatar-2.jpg" />
+    <Content Include="Content\images\testimonial\avatar-3.jpg" />
+    <Content Include="Content\images\testimonial\avatar-4.jpg" />
+    <Content Include="Content\images\testimonial\testimonial.jpg" />
+    <Content Include="Content\images\whatwedo\bag.jpg" />
+    <Content Include="Content\images\whatwedo\bucket.jpg" />
+    <Content Include="Content\images\whatwedo\cat.jpg" />
+    <Content Include="Content\images\whatwedo\dog.jpg" />
+    <Content Include="Content\images\whatwedo\medical.jpg" />
+    <Content Include="Content\images\whatwedo\nutrition.jpg" />
+    <Content Include="Content\images\why-choose\why-choose-1.jpg" />
+    <Content Include="Content\images\widget\bullet.png" />
+    <Content Include="Content\images\widget\recent\recent-1.jpg" />
+    <Content Include="Content\images\widget\recent\recent-2.jpg" />
+    <Content Include="Content\images\widget\recent\recent-3.jpg" />
+    <Content Include="Content\js\alertify.js" />
+    <Content Include="Content\js\alertify.min.js" />
+    <Content Include="Content\js\functions.js" />
+    <Content Include="Content\js\html5\respond.min.js" />
+    <Content Include="Content\js\jquery.easing.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <None Include="Content\js\jquery.validate-vsdoc.js" />
+    <Content Include="Content\js\jquery.validate.js" />
+    <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\libraries\animate\animate.min.css" />
+    <Content Include="Content\libraries\appear\jquery.appear.js" />
+    <Content Include="Content\libraries\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\libraries\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\libraries\fonts\font-awesome.min.css" />
+    <Content Include="Content\libraries\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\libraries\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\libraries\loader\loaders.min.css" />
+    <Content Include="Content\libraries\modernizr\modernizr.js" />
+    <Content Include="Content\libraries\number\jquery.animateNumber.min.js" />
+    <Content Include="Content\libraries\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\libraries\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Content\libraries\owl-carousel\owl.theme.css" />
+    <Content Include="Content\libraries\price-filter\jquery-ui.min.css" />
+    <Content Include="Content\libraries\price-filter\jquery-ui.min.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\SaveOurPetsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SaveOurPetsModel.Context.cs</LastGenOutput>
+      <DependentUpon>SaveOurPetsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SaveOurPetsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SaveOurPetsModel.edmx</DependentUpon>
+      <LastGenOutput>SaveOurPetsModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\alertify.js" />
+    <Content Include="Scripts\alertify.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\libraries\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\libraries\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\libraries\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\libraries\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\libraries\fonts\FontAwesome.otf" />
+    <Content Include="Content\libraries\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\libraries\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\libraries\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\libraries\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\SaveOurPetsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SaveOurPetsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SaveOurPetsModel.edmx.diagram">
+      <DependentUpon>SaveOurPetsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Scripts\functions.js" />
+    <Content Include="Scripts\html5\respond.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libraries\animate\animate.min.css" />
+    <Content Include="Scripts\libraries\appear\jquery.appear.js" />
+    <Content Include="Scripts\libraries\bootstrap\bootstrap.min.css" />
+    <Content Include="Scripts\libraries\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\libraries\fonts\font-awesome.min.css" />
+    <Content Include="Scripts\libraries\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\libraries\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\libraries\loader\loaders.min.css" />
+    <Content Include="Scripts\libraries\modernizr\modernizr.js" />
+    <Content Include="Scripts\libraries\number\jquery.animateNumber.min.js" />
+    <Content Include="Scripts\libraries\owl-carousel\owl.carousel.css" />
+    <Content Include="Scripts\libraries\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Scripts\libraries\owl-carousel\owl.theme.css" />
+    <Content Include="Scripts\libraries\price-filter\jquery-ui.min.css" />
+    <Content Include="Scripts\libraries\price-filter\jquery-ui.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
+    <Compile Include="Controllers\AdopcionesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\Estado_saludController.cs" />
+    <Compile Include="Controllers\GenerarPdfController.cs" />
+    <Compile Include="Controllers\img_mascotaController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MascotasController.cs" />
+    <Compile Include="Controllers\EspeciesController.cs" />
+    <Compile Include="Controllers\Estado_mascotaController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\RazasController.cs" />
+    <Compile Include="Controllers\reporte_rescateController.cs" />
+    <Compile Include="Controllers\reporte_seguimientoController.cs" />
+    <Compile Include="Controllers\Reporte_vacunasController.cs" />
+    <Compile Include="Controllers\solicitud_adopcionController.cs" />
+    <Compile Include="Controllers\Tipo_usuarioController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\VacunasController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AbstractModel.cs" />
+    <Compile Include="Models\Adopciones.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CorreoContactanos.cs" />
+    <Compile Include="Models\DatosAdopcion.cs" />
+    <Compile Include="Models\DatosMascota.cs" />
+    <Compile Include="Models\DatosReporte.cs" />
+    <Compile Include="Models\DatosUsuario.cs" />
+    <Compile Include="Models\DireccionModel.cs" />
+    <Compile Include="Models\direccion_usuario.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Especie.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstadoSaludModel.cs" />
+    <Compile Include="Models\Estado_mascota.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estado_salud.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImagenModel.cs" />
+    <Compile Include="Models\img_mascota.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mascota.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MascotaModel.cs" />
+    <Compile Include="Models\Raza.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\reporteRescateModel.cs" />
+    <Compile Include="Models\reporteSeguimientoModel.cs" />
+    <Compile Include="Models\reporteVacunasModel.cs" />
+    <Compile Include="Models\reporte_rescate.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\reporte_seguimiento.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reporte_vacunas.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SaveOurPetsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveOurPetsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SaveOurPetsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SaveOurPetsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveOurPetsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SecurityUtils.cs" />
+    <Compile Include="Models\solicitudModel.cs" />
+    <Compile Include="Models\solicitud_adopcion.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tipo_usuario.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuariosModel.cs" />
+    <Compile Include="Models\Vacunas.cs">
+      <DependentUpon>SaveOurPetsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\fonts\montserrat-light.eot" />
+    <Content Include="Content\fonts\montserrat-light.ttf" />
+    <Content Include="Content\fonts\montserrat-light.woff" />
+    <Content Include="Content\fonts\montserrat-light.woff2" />
+    <Content Include="Content\fonts\montserrat-semibold.eot" />
+    <Content Include="Content\fonts\montserrat-semibold.ttf" />
+    <Content Include="Content\fonts\montserrat-semibold.woff" />
+    <Content Include="Content\fonts\montserrat-semibold.woff2" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Inicio\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Inicio\AcercaDe.cshtml" />
+    <Content Include="Views\Inicio\Contactanos.cshtml" />
+    <Content Include="Views\Inicio\Adopciones.cshtml" />
+    <Content Include="Views\Login\IniciarSesion.cshtml" />
+    <Content Include="Views\Administracion\Index.cshtml" />
+    <Content Include="Views\Estado_salud\Create.cshtml" />
+    <Content Include="Views\Estado_salud\Delete.cshtml" />
+    <Content Include="Views\Estado_salud\Details.cshtml" />
+    <Content Include="Views\Estado_salud\Edit.cshtml" />
+    <Content Include="Views\Estado_salud\Index.cshtml" />
+    <Content Include="Views\img_mascota\Create.cshtml" />
+    <Content Include="Views\img_mascota\Delete.cshtml" />
+    <Content Include="Views\img_mascota\Details.cshtml" />
+    <Content Include="Views\img_mascota\Edit.cshtml" />
+    <Content Include="Views\img_mascota\Index.cshtml" />
+    <Content Include="Views\Mascotas\Agregar.cshtml" />
+    <Content Include="Views\Mascotas\Delete.cshtml" />
+    <Content Include="Views\Mascotas\Edit.cshtml" />
+    <Content Include="Views\Mascotas\ListaMascotas.cshtml" />
+    <Content Include="Views\Mascotas\Ver.cshtml" />
+    <Content Include="Views\Adopciones\Index.cshtml" />
+    <Content Include="Views\Especies\Create.cshtml" />
+    <Content Include="Views\Especies\Delete.cshtml" />
+    <Content Include="Views\Especies\Details.cshtml" />
+    <Content Include="Views\Especies\Edit.cshtml" />
+    <Content Include="Views\Especies\Index.cshtml" />
+    <Content Include="Views\Estado_mascota\Create.cshtml" />
+    <Content Include="Views\Estado_mascota\Delete.cshtml" />
+    <Content Include="Views\Estado_mascota\Details.cshtml" />
+    <Content Include="Views\Estado_mascota\Edit.cshtml" />
+    <Content Include="Views\Estado_mascota\Index.cshtml" />
+    <Content Include="Views\Razas\Create.cshtml" />
+    <Content Include="Views\Razas\Delete.cshtml" />
+    <Content Include="Views\Razas\Details.cshtml" />
+    <Content Include="Views\Razas\Edit.cshtml" />
+    <Content Include="Views\Razas\Index.cshtml" />
+    <Content Include="Views\Tipo_usuario\Create.cshtml" />
+    <Content Include="Views\Tipo_usuario\Delete.cshtml" />
+    <Content Include="Views\Tipo_usuario\Details.cshtml" />
+    <Content Include="Views\Tipo_usuario\Edit.cshtml" />
+    <Content Include="Views\Tipo_usuario\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Vacunas\Create.cshtml" />
+    <Content Include="Views\Vacunas\Delete.cshtml" />
+    <Content Include="Views\Vacunas\Details.cshtml" />
+    <Content Include="Views\Vacunas\Edit.cshtml" />
+    <Content Include="Views\Vacunas\Index.cshtml" />
+    <Content Include="Scripts\libraries\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\libraries\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\libraries\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\libraries\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\libraries\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\libraries\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\libraries\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\libraries\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\libraries\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\solicitud_adopcion\Create.cshtml" />
+    <Content Include="Views\solicitud_adopcion\Delete.cshtml" />
+    <Content Include="Views\solicitud_adopcion\Details.cshtml" />
+    <Content Include="Views\solicitud_adopcion\Edit.cshtml" />
+    <Content Include="Views\solicitud_adopcion\Index.cshtml" />
+    <Content Include="Views\Reporte_vacunas\Create.cshtml" />
+    <Content Include="Views\Reporte_vacunas\Delete.cshtml" />
+    <Content Include="Views\Reporte_vacunas\Details.cshtml" />
+    <Content Include="Views\Reporte_vacunas\Edit.cshtml" />
+    <Content Include="Views\Reporte_vacunas\Index.cshtml" />
+    <Content Include="Views\reporte_seguimiento\Create.cshtml" />
+    <Content Include="Views\reporte_seguimiento\Delete.cshtml" />
+    <Content Include="Views\reporte_seguimiento\Details.cshtml" />
+    <Content Include="Views\reporte_seguimiento\Edit.cshtml" />
+    <Content Include="Views\reporte_seguimiento\Index.cshtml" />
+    <Content Include="Views\Adopciones\Create.cshtml" />
+    <Content Include="Views\Adopciones\Delete.cshtml" />
+    <Content Include="Views\Adopciones\Details.cshtml" />
+    <Content Include="Views\Adopciones\Edit.cshtml" />
+    <Content Include="Views\reporte_rescate\Create.cshtml" />
+    <Content Include="Views\reporte_rescate\Delete.cshtml" />
+    <Content Include="Views\reporte_rescate\Details.cshtml" />
+    <Content Include="Views\reporte_rescate\Edit.cshtml" />
+    <Content Include="Views\reporte_rescate\Index.cshtml" />
+    <Content Include="Views\reporte_rescate\Reportar.cshtml" />
+    <Content Include="Views\Adopciones\Inicio.cshtml" />
+    <Content Include="Views\Login\Reestablecer.cshtml" />
+    <Content Include="Views\Login\Confirmación.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\GenerarPdf\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50223</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44314/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

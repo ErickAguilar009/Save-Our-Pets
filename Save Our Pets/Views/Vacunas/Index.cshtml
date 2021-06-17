@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Save_Our_Pets.Models.Vacunas>
+
+@{
+    ViewBag.Title = "Lista";
+}
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Lista de Vacunas</h2>
+
+        <p>
+            @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success" })
+            <span style="visibility:hidden;">|||||</span>
+            @Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new { n = "vacunas" }, new { @class = "btn btn-default", @target = "_blank" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.vacuna)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vacuna)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_vacuna }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.id_vacuna }, new { @class = "btn btn-default" }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id_vacuna }, new
+                   {
+                       @class = "btn btn-danger",
+                       @onclick = "return confirm('¿Desea eliminar esta vacuna?');"
+
+                   })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

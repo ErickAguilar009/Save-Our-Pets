@@ -1,0 +1,147 @@
+﻿@model PagedList.IPagedList<Save_Our_Pets.Models.Usuarios>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Lista";
+}
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Lista de Usuarios</h2>
+        
+        <p>
+            @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success" })
+            <span style="visibility:hidden;">|||||</span>
+            @Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new {n = "usuarios" }, new { @class = "btn btn-default", @target = "_blank" })
+        </p>
+        <br /><br />
+              <div class="row">
+                  @using (Html.BeginForm("Index", "Usuarios", FormMethod.Get))
+                  {
+                      <div class="col-md-3">
+                          <label class="control-label">
+                              Buscar por nombre de usuario:
+                          </label>
+                      </div>
+                      <div class="col-md-3">
+                          @Html.TextBox("nombreUsuario", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+                      </div>
+                      <div class="col-md-1">
+                          <input type="submit" name="Buscar" value="Buscar" class="btn btn-warning" />
+
+                      </div>
+                  }
+
+                  @using (Html.BeginForm("Index", "Usuarios", FormMethod.Get))
+                  {
+                      <label class="control-label col-md-2">
+                          Tipo de Usuario:
+                      </label>
+                      <div class="col-md-3">
+                          @Html.DropDownList("tipoUsuario", new List<SelectListItem>
+               {
+                   new SelectListItem { Value = "", Text = "Todos" },
+                   new SelectListItem { Value = "1", Text = "Administrador" },
+                   new SelectListItem { Value = "2", Text = "Empleado" },
+                   new SelectListItem { Value = "3", Text = "Cliente" }
+               },
+                     new { @class = "form-control", @onchange = "submitform();", @value= ViewBag.FiltroTipo })
+                      </div>
+                  }
+              </div>
+              <br /><br />
+              <table class="table">
+                  <tr>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().nombres)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().apellidos)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().email)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().telefono)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().DUI)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().fecha_nacimiento)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().Tipo_usuario.nombre_tipo)
+                      </th>
+                      <th></th>
+                  </tr>
+
+                  @foreach (var item in Model)
+                  {
+                      <tr>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.nombres)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.apellidos)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.email)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.telefono)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.DUI)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.Tipo_usuario.nombre_tipo)
+                          </td>
+                          <td>
+                              <!-- Dropdown de acciones -->
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Acciones <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                      <li>@Html.ActionLink("Editar", "Edit", new { id = item.id_usuario }, new { @class = "btn btn-primary" })</li>
+                                      <li>@Html.ActionLink("Generar Reporte", "Pdf", "GenerarPdf", new { n = "usuarios/" + item.id_usuario }, new { @class = "btn btn-info", @target = "_blank" })</li>
+                                      <li>@Html.ActionLink("Detalles", "Details", new { id = item.id_usuario }, new { @class = "btn btn-default" })</li>
+                                      <li>
+                                          @Html.ActionLink("Eliminar", "Delete", new { id = item.id_usuario }, new
+                                                     {
+                                                         @class = "btn btn-danger",
+                                                         @onclick = "return confirm('¿Desea eliminar este Usuario?');"
+
+                                                     })
+                                      </li>
+                                  </ul>
+                              </div>
+
+                          </td>
+                      </tr>
+                  }
+
+              </table>
+
+              <br />
+              <!--Controles de paginación-->
+              <div class="pagination">
+                  Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                  @Html.PagedListPager(Model, page => Url.Action("Index",
+                      new { page, currentFilter = ViewBag.CurrentFilter, filtroTipo = ViewBag.FiltroTipo }))
+
+              </div>
+
+
+              </div>
+</div>
+
+<script>
+    function submitform() {
+        $('form').submit();
+    }
+</script>

@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Save_Our_Pets.Models.Reporte_vacunas>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Reporte de Vacunas";
+}
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Reporte de vacunas</h2>
+        <p>
+            @Html.ActionLink("Agregar una vacunación", "Create")
+        </p>
+
+        <br /><br />
+        <div class="row">
+            @using (Html.BeginForm("Index", "Reporte_vacunas", FormMethod.Get))
+            {
+                <div class="col-md-3">
+                    <label class="control-label">
+                        Buscar por nombre mascota:
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("nombreMascota", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+                </div>
+
+            }
+        </div>
+        <br /><br />
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().fecha_aplicada)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().fecha_a_aplicar_nueva)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Mascota.nombre_mascota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Vacunas.vacuna)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_aplicada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_a_aplicar_nueva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mascota.nombre_mascota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vacunas.vacuna)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id_vacuna_aplicada }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id_vacuna_aplicada }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id_vacuna_aplicada }, new
+                                            {
+                                                @class = "btn btn-danger",
+                                                @onclick = "return confirm('¿Desea eliminar esta imagen?');"
+
+                                            })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <!--Controles de paginación-->
+        <div class="pagination">
+            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, currentFilter = ViewBag.CurrentFilter }))
+
+        </div>
+
+    </div>
+</div>

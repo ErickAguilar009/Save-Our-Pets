@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Save_Our_Pets.Models.reporte_rescate>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="col-md-12 col-md-offset-0">
+        <h2>Index</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Reportado por:
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha_reporte)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha_rescate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mascota.nombre_mascota)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_reporte)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha_rescate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mascota.nombre_mascota)
+                    </td>
+                    <td>
+                        <!-- Dropdown de acciones -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Acciones <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Editar", "Edit", new { id = item.id_solicitud }, new { @class = "btn btn-primary" })</li>
+                                <li>@Html.ActionLink("Detalles", "Details", new { id = item.id_solicitud }, new { @class = "btn btn-default" })</li>
+                                <li>
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_solicitud }, new
+                                               {
+                                                   @class = "btn btn-danger",
+                                                   @onclick = "return confirm('¿Desea eliminar este Reporte?');"
+
+                                               })
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div></div>

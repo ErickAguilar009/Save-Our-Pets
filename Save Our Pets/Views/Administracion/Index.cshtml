@@ -1,0 +1,135 @@
+﻿
+<!-- Why Choose Us -->
+<div class="why-choose-us container-fluid no-padding">
+    <div class="section-padding"></div>
+    <!-- Container -->
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            @*System.Web.HttpContext.Current.Session["usuario"]*@
+            <h3>Bienvenido <b>@System.Web.HttpContext.Current.Session["nombre_apellidoUsuario"]</b> !</h3>
+            <p>¿Qué deseas hacer hoy?</p>
+        </div><!-- Section Header /- -->
+        <div class="row">
+            @if (Convert.ToInt32(System.Web.HttpContext.Current.Session["tipo_usuario"]) == 1)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/medal.png" alt="medal" /></i>
+                            <h3>Administrar usuarios</h3>
+                            <p>Administrar usuarios</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "Usuarios")
+                    </div>
+                </div>
+            }
+
+            @if (Convert.ToInt32(System.Web.HttpContext.Current.Session["tipo_usuario"]) !=3)
+            { 
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/dogfeek.png" alt="dogfeek" /></i>
+                            <h3>Administrar mascotas</h3>
+                            <p>Administrar mascotas</p>
+                        </div>
+                        @Html.ActionLink("Ir", "ListaMascotas", "Mascotas")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/home.png" alt="medal" /></i>
+                            <h3>Administrar adopciones</h3>
+                            <p>Administrar adopciones</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "solicitud_adopcion")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/customer-support.png" alt="medal" /></i>
+                            <h3>Lista de Reportes</h3>
+                            <p>Lista de Reportes</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "reporte_rescate")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/customer-support.png" alt="medal" /></i>
+                            <h3>Administrar estados de mascotas</h3>
+                            <p>Administrar estados de mascotas</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "Estado_mascota")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/dogfeek.png" alt="dogfeek" /></i>
+                            <h3>Administrar especies</h3>
+                            <p>Administrar especies</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "Especies")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/dogfeek.png" alt="dogfeek" /></i>
+                            <h3>Administrar razas</h3>
+                            <p>Administrar razas</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "Razas")
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="why-choose-content">
+                        <div class="image-box">
+                            <img src="~/Content/images/why-choose/why-choose-1.jpg" alt="why choose" />
+                        </div>
+                        <div class="why-choose-hover">
+                            <i><img src="~/Content/images/icon/medal.png" alt="medal" /></i>
+                            <h3>Administrar vacunas</h3>
+                            <p>Administrar vacunas</p>
+                        </div>
+                        @Html.ActionLink("Ir", "Index", "Vacunas")
+                    </div>
+                </div>
+
+            }
+            </div>
+    </div><!-- Container /- -->
+    <div class="section-padding"></div>
+</div><!-- Why Choose Us /- -->

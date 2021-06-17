@@ -1,0 +1,164 @@
+﻿@model List<Save_Our_Pets.Models.img_mascota>
+
+
+<!-- Brands -->
+<div class="brands container-fluid no-padding">
+    <div class="section-padding"></div>
+    <!-- Container -->
+    <div class="container">
+        <div class="section-header">
+            <h3>¿Deseas adoptar?</h3>
+            <p>Ellos te estan esperando, solo dales una oportunidad</p>
+        </div>
+        <div class="brand-logo">
+            @if (Model.Count < 7)
+            {
+                <!--Slider por defecto-->
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1600415599762-662edc3e2eca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="brand-1">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80" alt="brand-2">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1566847438217-76e82d383f84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="brand-3">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1586326709898-0a344840a314?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="brand-4">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1507568237455-03228e5ddb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80" alt="brand-5">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1560809328-c3575cb91707?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80" alt="brand-6">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1556089969-9928c26e7edf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80" alt="brand-7">
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="brands-images-nw">
+                        <img class="image" src="https://images.unsplash.com/photo-1571999001321-f54197a02cc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="brand-8">
+
+                    </div>
+
+                </div>
+
+
+                <!--Fin slider por defecto-->
+            }
+            else
+            {
+               int contador = 1; 
+
+                foreach (var item in Model)
+                {
+                    contador++;
+                    <div class="col-md-12">
+                        <div class="brands-images-nw">
+                            @{ ViewBag.ImagenMascota = "https://localhost:44314/img_mascota/ImagenMascota/" + item.id_imagen;}
+                            @{ ViewBag.brand = "brand-" + item.id_imagen;}
+                            <img class="image" src="@ViewBag.ImagenMascota" alt="@ViewBag.brand">
+
+                        </div>
+
+                    </div>
+                    if (contador == 8) { break; }
+                }
+            }
+
+
+            @*
+
+            *@
+
+        </div>
+    </div><!-- Container / -->
+    <div class="section-padding"></div>
+</div><!-- Brands / -->
+<!-- Why Choose Us -->
+<div class="why-choose-us container-fluid no-padding">
+    <!-- Container -->
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h3>Toma en cuenta</h3>
+
+        </div><!-- Section Header /- -->
+        <!--1 central, 2 columnas-->
+        <div class="row">
+            <div class="center-block">
+                <b>FAVOR SOLICITAR ADOPCIÓN SI REALMENTE ERES RESPONSABLE CON LOS ANIMALES.</b> (Si no cumplirás o respetaras los puntos de adopción te pedimos no aplicar y ahórranos la pérdida de tiempo). ADOPCIONES SOLO PARA ZONA PARACENTRAL DEL PAIS Y EXCLUSIVAMENTE PARA FAMILIAS (NO CARWASH, NO TALLERES, NO BODEGAS, NO FINCAS, NO CASA DE CAMPO, NO CASAS DE PLAYA, NO LOTES, NO TERRENOS, NO EMPRESAS, OFICINAS, NO ZONA DE MARAS, PRACTICAS O EXPERIMENTOS). Toma en cuenta que antes de adoptar debes pensar bien, recuerda que es una vida que llevaras a tu hogar para formar parte de tu familia.
+            </div>
+            <div class="section-padding"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 brd">
+                <div class="center-block text-justify">
+                    <ul>
+                        <li>¿Podrás mantenerlo?</li>
+                        <li>¿Será para toda la vida?</li>
+                        <li>¿Sabrás educarlo?</li>
+                        <li>¿Serás paciente con su adaptación?</li>
+                        <li>¿Podrás manejar sus enfermedades?</li>
+                        <li>¿Podrás cubrir gastos veterinarios?</li>
+                        <li>¿Lo atenderás cómo se debe? No te dejes llevar por la emoción de tener una mascota, o por darle una mascota a tu hijo, las cosas bien pensadas funcionan mejor.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6 brd">
+                <div class="center-block text-justify">
+                    <b>Requisitos:</b>
+                    <ul>
+                        <li>Debes ser mayor de 21 años.</li>
+                        <li>Tener empleo.</li>
+                        <li>Todos en el hogar estar de acuerdo con la adopción.</li>
+                        <li>Estar de acuerdo con la castración/esterilización.</li>
+                        <li>Estar de acuerdo con el seguimiento permanente que se les da.</li>
+                        <li>Contar con un extra para gastos veterinarios ya sea consultas, controles y vacunas.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div><!--1 central, 2 columnas /- -->
+        <br /><br />
+        <div class="row">
+            <div class="center-block">
+                @Html.ActionLink("Deseo Adoptar", "Inicio", "Adopciones", null, new { @class = "btn-register" })
+
+            </div>
+            <div class="section-padding"></div>
+        </div>
+
+    </div><!-- Container /- -->
+    <div class="section-padding"></div>
+</div><!-- Why Choose Us /- -->

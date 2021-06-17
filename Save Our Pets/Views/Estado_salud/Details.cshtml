@@ -1,0 +1,36 @@
+﻿@model Save_Our_Pets.Models.Estado_salud
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Detalles</h2>
+        <h4>Estado_salud</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion_salud)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descripcion_salud)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mascota.nombre_mascota)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mascota.nombre_mascota)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_estado_salud }) |
+        @Html.ActionLink("Volver", "Index",null, new { @class = "btn btn-default" })
+    </p>
+</div>

@@ -1,0 +1,135 @@
+﻿@model Save_Our_Pets.Models.DatosAdopcion
+
+@{
+    ViewBag.Title = "Solicitar Adopción";
+}
+
+
+<div class="brands container-fluid no-padding">
+    <div class="section-padding"></div>
+    <!-- Container -->
+    <div class="container">
+        <div class="section-header">
+            <h3>¿Desea adoptar?</h3>
+
+        </div>
+
+    </div><!-- Container / -->
+</div><!-- Brands / -->
+
+<div class="container-fluid no-padding checkout-content">
+    <!-- Container -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-5">
+                <div class="section-padding"></div>
+                <div class="section-title">
+                    <h3>Le recordamos qué para ello:</h3>
+                </div>
+                <!-- New User Registeration -->
+                <div class="new-user-registeration">
+                    <div class="center-block text-justify" style="color:black;">
+                        <b>Tener siempre presente:</b>
+                        <ul>
+                            <li>¿Podrás mantenerlo?</li>
+                            <li>¿Será para toda la vida?</li>
+                            <li>¿Sabrás educarlo?</li>
+                            <li>¿Serás paciente con su adaptación?</li>
+                            <li>¿Podrás manejar sus enfermedades?</li>
+                            <li>¿Podrás cubrir gastos veterinarios?</li>
+                            <li>¿Lo atenderás cómo se debe? No te dejes llevar por la emoción de tener una mascota, o por darle una mascota a tu hijo, las cosas bien pensadas funcionan mejor.</li>
+                        </ul>
+
+                        <b>Requisitos:</b>
+                        <ul>
+                            <li>Debes ser mayor de 21 años.</li>
+                            <li>Tener empleo.</li>
+                            <li>Todos en el hogar estar de acuerdo con la adopción.</li>
+                            <li>Estar de acuerdo con la castración/esterilización.</li>
+                            <li>Estar de acuerdo con el seguimiento permanente que se les da.</li>
+                            <li>Contar con un extra para gastos veterinarios ya sea consultas, controles y vacunas.</li>
+                        </ul>
+
+                    </div>
+                </div><!-- New User Registeration /- -->
+            </div>
+            <!-- User Login -->
+            <div class="col-md-7 user-login">
+                <div class="section-padding"></div>
+                <div class="center-block text-justify">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="section-title">
+                            <h3 style="font-size:18px;">Rellene el siguiente formulario:</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="new-user-registeration">
+                    @using (Html.BeginForm("Inicio", "Adopciones", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+
+                        <div class="col-xs-12 col-md-6">
+                            <label for="nombre">Nombres:</label>
+                            @Html.EditorFor(model => model.infoUsuario.nombres, new { htmlAttributes = new { @class = "form-control", placeholder = "nombres", @required = "required" } })
+
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <label for="apellido">Apellidos:</label>
+                            @Html.EditorFor(model => model.infoUsuario.apellidos, new { htmlAttributes = new { @class = "form-control", placeholder = "apellidos", @required = "required" } })
+                        </div>
+
+                        <div class=" col-md-6 col-xs-12">
+                            <label for="telefono">Teléfono:</label>
+                            @Html.EditorFor(model => model.infoUsuario.telefono, new { htmlAttributes = new { @class = "form-control", placeholder = "8888-8888", @required = "required" } })
+                        </div>
+                        <div class=" col-md-6 col-xs-12">
+                            <label for="telefono">DUI:</label>
+                            @Html.EditorFor(model => model.infoUsuario.DUI, new { htmlAttributes = new { @class = "form-control", placeholder = "12345678-9", @required = "required" } })
+                        </div>
+
+                        <div class="col-md-6 col-xs-12">
+                            <label for="mail">Fecha de nacimiento:</label>
+                            @Html.EditorFor(model => model.infoUsuario.fecha_nacimiento, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+
+                        <div class="col-md-6 col-xs-12">
+                            <label for="mail">Correo:</label>
+                            @Html.EditorFor(model => model.infoUsuario.email, new { htmlAttributes = new { @class = "form-control", placeholder = "nombre@correo.com", @required = "required" } })
+                        </div>
+
+                        <div class=" col-md-6 col-xs-12">
+                            <label for="telefono">Contraseña:</label>
+                            @Html.EditorFor(model => model.infoUsuario.contra, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+
+                        <div class=" col-md-6 col-xs-12">
+                            <label for="telefono">Confirme contraseña:</label>
+                            <input type="password" id="pass2" name="pass2" class="form-control" placeholder="**********" required>
+                        </div>
+
+                        <div class="col-md-6 col-xs-12 col-md-offset-3">
+                            <label for="especie">Especie a adoptar:</label>
+                            @Html.DropDownListFor(model => model.datosSolicitud.id_especie, (SelectList)ViewBag.id_especie, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        @Html.HiddenFor(model => model.datosPersonalesUsuario.departamento)
+
+                        <button type="submit" class="btn-register btn-sign-in">Enviar formulario</button>
+                    }
+                </div>
+
+            </div><!-- User Login /- -->
+
+        </div>
+    </div><!-- Container /- -->
+</div>
+

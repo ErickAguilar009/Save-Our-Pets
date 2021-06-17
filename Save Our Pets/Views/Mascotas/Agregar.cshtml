@@ -1,0 +1,144 @@
+﻿@model Save_Our_Pets.Models.DatosMascota
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Agregar</h2>
+
+        @using (Html.BeginForm("Agregar", "Mascotas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Mascota</h4>
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.infoMascota.nombre_mascota, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.infoMascota.nombre_mascota, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infoMascota.nombre_mascota, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.infoMascota.id_especie, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.infoMascota.id_especie, (SelectList)ViewBag.id_especie, htmlAttributes: new { @class = "form-control", onchange = "CambiarRazas(this.value);" })
+                        @Html.ValidationMessageFor(model => model.infoMascota.id_especie, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.infoMascota.id_raza, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.HiddenFor(model => model.infoMascota.id_raza, new { Value = 1 })
+                        @Html.DropDownList("razaGatos", (SelectList)ViewBag.id_raza_gatos, htmlAttributes: new { @class = "form-control", @id = "razasgatoddl" })
+                        @Html.DropDownList("razaPerros", (SelectList)ViewBag.id_raza_perros, htmlAttributes: new { @class = "form-control hidden", @id = "razasperroddl" })
+                        @Html.DropDownList("razaOtros", (SelectList)ViewBag.id_raza_otros, htmlAttributes: new { @class = "form-control hidden", @id = "razasotroddl" })
+
+                        @Html.ValidationMessageFor(model => model.infoMascota.id_raza, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.infoMascota.color_pelo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.infoMascota.color_pelo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infoMascota.color_pelo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.infoMascota.fecha_nacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.infoMascota.fecha_nacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infoMascota.fecha_nacimiento, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.infoMascota.peso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.infoMascota.peso, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infoMascota.peso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.infoMascota.esterilizado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.infoMascota.esterilizado, new List<SelectListItem> {
+                                            new SelectListItem {  Value = "Si", Text = "Si" },
+                                           new SelectListItem {  Value = "No", Text = "No" }
+
+                   }, new { @class = "form-control", @id = "ddlEsterilizado" })
+
+                        @Html.ValidationMessageFor(model => model.infoMascota.esterilizado, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.infoMascota.id_estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.infoMascota.id_estado, (SelectList)ViewBag.id_estado, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.infoMascota.id_estado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.saludMascota.descripcion_salud, "Descripción de Salud", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.TextAreaFor(model => model.saludMascota.descripcion_salud, htmlAttributes: new { @class = "form-control", rows = "3", @style = "resize:none;" })
+
+                        @Html.ValidationMessageFor(model => model.saludMascota.descripcion_salud, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <input type="submit" value="Agregar" class="btn btn-primary" />
+
+
+            </div>
+        }
+        <br />
+    <div>
+        @Html.ActionLink("Volver a la Lista", "ListaMascotas",null,new {@class="btn btn-default" })
+    </div>
+    </div>
+</div>
+        <script>
+
+            function CambiarRazas(dValue) {
+                var ddlPerro = document.getElementById("razasperroddl");
+                var ddlGato = document.getElementById("razasgatoddl");
+                var ddlOtros = document.getElementById("razasotroddl");
+
+
+                if (dValue == 2) {//De 52 a 115
+                    console.log("PERRO");
+                    //mostramos
+                    ddlPerro.classList.remove("hidden");
+                    document.getElementById("razasperroddl").style.display = "block";
+                    //ocultamos
+                    document.getElementById("razasgatoddl").style.display = "none";
+                    document.getElementById("razasotroddl").style.display = "none";
+                } else if (dValue == 3) {//116 solamente
+                    console.log("OTRO");
+                    //mostramos
+                    ddlOtros.classList.remove("hidden");
+                    document.getElementById("razasotroddl").style.display = "block";
+                    //ocultamos
+                    document.getElementById("razasgatoddl").style.display = "none";
+                    document.getElementById("razasperroddl").style.display = "none";
+                } else {//Empieza en 1 hasta 52
+                    console.log("GATO");
+                    //mostramos
+                    ddlGato.classList.remove("hidden");
+                    document.getElementById("razasgatoddl").style.display = "block";
+                    //ocultamos
+                    document.getElementById("razasotroddl").style.display = "none";
+                    document.getElementById("razasperroddl").style.display = "none";
+                }
+            }
+
+        </script>
+        
