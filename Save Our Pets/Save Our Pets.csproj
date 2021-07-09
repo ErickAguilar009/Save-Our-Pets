@@ -456,6 +456,7 @@
     <Compile Include="Controllers\reporte_rescateController.cs" />
     <Compile Include="Controllers\reporte_seguimientoController.cs" />
     <Compile Include="Controllers\Reporte_vacunasController.cs" />
+    <Compile Include="Controllers\Singleton.cs" />
     <Compile Include="Controllers\solicitud_adopcionController.cs" />
     <Compile Include="Controllers\Tipo_usuarioController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />

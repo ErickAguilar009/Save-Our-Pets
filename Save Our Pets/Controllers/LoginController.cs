@@ -62,8 +62,9 @@ namespace Save_Our_Pets.Controllers
                 {
                     //Session["user"] = usuario_valido;
                     System.Web.HttpContext.Current.Session["usuario"] = usuario_valido;
-                    System.Web.HttpContext.Current.Session["id_usuario"] = usuario_valido.id_usuario;
+                    Singleton.Instance.id = usuario_valido.id_usuario;
                     System.Web.HttpContext.Current.Session["nombre_apellidoUsuario"] = usuario_valido.nombres + " " + usuario_valido.apellidos;
+                    Singleton.Instance.tipo = usuario_valido.id_tipo;
                     System.Web.HttpContext.Current.Session["tipo_usuario"] = usuario_valido.id_tipo;
                 }
 

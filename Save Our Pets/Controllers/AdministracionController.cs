@@ -11,7 +11,7 @@ namespace Save_Our_Pets.Controllers
         // GET: Administracion
         public ActionResult Index()
         {
-            if (System.Web.HttpContext.Current.Session["usuario"] == null)
+            if (Singleton.Instance.id == 0)
             {
                 TempData["errorMessage"] = "Debe iniciar sesión antes de continuar";
                 return RedirectToAction("IniciarSesion", "Login", null);
